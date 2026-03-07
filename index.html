@@ -3,125 +3,793 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Елена Иванова — Добаюкивание | Реставрация базового доверия миру</title>
+    <title>Елена Иванова — Добаюкивание</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --accent: #e8a7b5; 
-            --accent-dark: #d492a0;
-            --text: #3d3436;
+            --cream: #faf5f0;
+            --blush: #e8b4bc;
+            --blush-light: #f5dde1;
+            --blush-deep: #c97d8a;
+            --burgundy: #6b2737;
+            --text: #2d1f22;
+            --text-muted: #8a6d72;
             --white: #ffffff;
-            --soft-bg: #fdf8f9;
-            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { font-family: 'Manrope', sans-serif; color: var(--text); background: var(--white); line-height: 1.7; overflow-x: hidden; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
-        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 400; line-height: 1.2; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            overflow-x: hidden;
+        }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 25px; }
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+        }
 
-        /* --- Hero Section (Без фото) --- */
+        /* ===================== NAV ===================== */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 20px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: transparent;
+            transition: background 0.4s;
+        }
+        nav.scrolled {
+            background: rgba(250,245,240,0.92);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 20px rgba(0,0,0,0.06);
+        }
+        .nav-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: var(--white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.4s;
+        }
+        nav.scrolled .nav-logo { color: var(--text); }
+        .nav-logo svg { transition: fill 0.4s; }
+        nav.scrolled .nav-logo svg path { fill: var(--blush-deep); }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: rgba(255,255,255,0.9);
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+        nav.scrolled .nav-links a { color: var(--text-muted); }
+        .nav-links a:hover { color: var(--blush); }
+        nav.scrolled .nav-links a:hover { color: var(--blush-deep); }
+
+        /* ===================== HERO ===================== */
         .hero {
             position: relative;
             height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
             overflow: hidden;
-            background: #2a2223; /* Заглушка до загрузки видео */
         }
 
         .hero-video {
             position: absolute;
-            top: 50%; left: 50%;
-            min-width: 100%; min-height: 100%;
-            width: auto; height: auto;
-            transform: translate(-50%, -50%);
+            inset: 0;
+            width: 100%; height: 100%;
             object-fit: cover;
             z-index: 1;
-            opacity: 0.6;
         }
 
         .hero-overlay {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%);
+            inset: 0;
+            background: linear-gradient(135deg, rgba(107,39,55,0.75) 0%, rgba(45,31,34,0.5) 60%, rgba(0,0,0,0.2) 100%);
             z-index: 2;
         }
 
         .hero-content {
             position: relative;
             z-index: 10;
-            max-width: 900px;
-            padding: 0 20px;
-            animation: fadeIn 2s ease;
+            padding: 0 60px;
+            max-width: 660px;
+            animation: heroIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
 
-        .hero h1 { font-size: clamp(2.5rem, 8vw, 5.5rem); margin-bottom: 25px; }
-        .hero p { font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 200; margin-bottom: 45px; letter-spacing: 1px; }
+        @keyframes heroIn {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        /* --- Buttons --- */
-        .btn {
-            display: inline-block;
-            padding: 22px 50px;
-            background: var(--white);
-            color: var(--text);
-            text-decoration: none;
-            border-radius: 60px;
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--blush-light);
+            font-size: 0.8rem;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            font-weight: 600;
-            transition: var(--transition);
+            margin-bottom: 28px;
         }
-        .btn:hover { transform: scale(1.05); background: var(--accent); color: white; }
+        .hero-label::before {
+            content: '';
+            width: 30px; height: 1px;
+            background: var(--blush);
+        }
 
-        /* --- Section Styling --- */
-        section { padding: 120px 0; }
-        .section-header { text-align: center; max-width: 800px; margin: 0 auto 80px; }
-        .section-header h2 { font-size: 3rem; margin-bottom: 20px; color: var(--text); }
-        .section-header p { font-size: 1.2rem; color: #7a6b6e; font-style: italic; }
+        .hero h1 {
+            font-size: clamp(3.5rem, 7vw, 6rem);
+            color: var(--white);
+            line-height: 1.05;
+            margin-bottom: 28px;
+        }
+        .hero h1 em {
+            font-style: italic;
+            color: var(--blush-light);
+        }
 
-        /* --- Three Stages (Метод) --- */
-        .stages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
-        .stage-card { text-align: center; padding: 40px 20px; background: var(--soft-bg); border-radius: 30px; transition: 0.3s; }
-        .stage-card:hover { transform: translateY(-10px); background: #f9ecee; }
-        .stage-num { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--accent); opacity: 0.5; margin-bottom: 10px; }
-        .stage-card h3 { margin-bottom: 20px; font-size: 1.6rem; }
+        .hero-desc {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            font-weight: 300;
+            margin-bottom: 50px;
+            max-width: 480px;
+        }
 
-        /* --- Pain Points (Для кого) --- */
-        .pains { background: var(--text); color: var(--white); }
-        .pains-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .pain-item { border-left: 2px solid var(--accent); padding-left: 30px; }
-        .pain-item h4 { font-size: 1.4rem; margin-bottom: 15px; color: var(--accent); }
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
 
-        /* --- Specialist Block --- */
-        .specialist { background: var(--soft-bg); }
-        .spec-flex { display: flex; align-items: center; gap: 60px; }
-        .spec-text { flex: 1.5; }
-        .spec-text h2 { font-size: 3rem; margin-bottom: 30px; }
-        .spec-text p { font-size: 1.15rem; margin-bottom: 20px; }
+        .btn-primary {
+            display: inline-block;
+            padding: 16px 40px;
+            background: var(--blush-deep);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+        }
+        .btn-primary:hover {
+            background: var(--burgundy);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(107,39,55,0.4);
+        }
 
-        /* --- Footer --- */
-        footer { background: #2a2223; color: white; padding: 60px 0; text-align: center; }
+        .btn-play {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+        .btn-play:hover { color: var(--blush-light); }
+        .play-circle {
+            width: 50px; height: 50px;
+            border: 1.5px solid rgba(255,255,255,0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        .btn-play:hover .play-circle {
+            border-color: var(--blush-light);
+            background: rgba(255,255,255,0.1);
+        }
+        .play-circle svg { margin-left: 3px; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        /* Декоративные звёздочки */
+        .star {
+            position: absolute;
+            z-index: 10;
+            color: var(--blush-light);
+            font-size: 1.5rem;
+            opacity: 0.7;
+            animation: spin 8s linear infinite;
+        }
+        .star-1 { top: 22%; right: 18%; font-size: 2rem; animation-duration: 12s; }
+        .star-2 { bottom: 30%; right: 35%; font-size: 1.2rem; animation-direction: reverse; }
 
-        @media (max-width: 900px) {
-            .stages-grid, .pains-grid, .spec-flex { grid-template-columns: 1fr; flex-direction: column; }
-            .section-header h2 { font-size: 2.2rem; }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* ===================== ABOUT SECTION ===================== */
+        .about {
+            padding: 120px 60px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .about-image-wrap {
+            position: relative;
+        }
+
+        .about-image-blob {
+            position: relative;
+            width: 100%;
+            padding-bottom: 120%;
+            border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+            overflow: hidden;
+            background: var(--blush-light);
+        }
+        .about-image-blob img {
+            position: absolute;
+            inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+
+        /* Фигурки сбоку */
+        .side-dots {
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .dot {
+            width: 14px; height: 14px;
+            border-radius: 50%;
+        }
+        .dot-1 { background: var(--blush-light); }
+        .dot-2 { background: var(--blush); width: 18px; height: 18px; }
+        .dot-3 { background: var(--burgundy); }
+
+        .about-text .eyebrow {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--blush-deep);
+            font-weight: 500;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .about-text .eyebrow::after {
+            content: '';
+            flex: 1;
+            max-width: 50px;
+            height: 1px;
+            background: var(--blush);
+        }
+
+        .about-text h2 {
+            font-size: clamp(2.2rem, 4vw, 3.4rem);
+            color: var(--text);
+            margin-bottom: 25px;
+            line-height: 1.15;
+        }
+        .about-text h2 em { color: var(--blush-deep); }
+
+        .about-text p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .stat {
+            text-align: center;
+            padding: 20px 30px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+        .stat:first-child {
+            background: var(--blush-deep);
+            color: white;
+        }
+        .stat:not(:first-child) {
+            background: var(--white);
+            border: 1px solid var(--blush-light);
+        }
+        .stat:hover { transform: translateY(-5px); }
+        .stat-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .stat:first-child .stat-num { color: white; }
+        .stat:not(:first-child) .stat-num { color: var(--blush-deep); }
+        .stat-label {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        /* ===================== STAGES ===================== */
+        .stages {
+            background: var(--white);
+            padding: 120px 60px;
+        }
+        .stages-inner { max-width: 1300px; margin: 0 auto; }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+        .section-header .eyebrow {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--blush-deep);
+            font-weight: 500;
+            margin-bottom: 16px;
+            display: block;
+        }
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            color: var(--text);
+        }
+        .section-header p {
+            margin-top: 15px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stages-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .stage-card {
+            padding: 40px 28px;
+            border-radius: 28px;
+            background: var(--cream);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .stage-card::before {
+            content: '';
+            position: absolute;
+            bottom: -20px; right: -20px;
+            width: 100px; height: 100px;
+            border-radius: 50%;
+            background: var(--blush-light);
+            opacity: 0.4;
+            transition: all 0.4s;
+        }
+        .stage-card:hover {
+            transform: translateY(-12px);
+            background: var(--blush-deep);
+            color: white;
+        }
+        .stage-card:hover::before {
+            opacity: 0.2;
+            transform: scale(2);
+        }
+        .stage-card:hover .stage-icon svg path,
+        .stage-card:hover .stage-icon svg circle { stroke: white; }
+        .stage-card:hover h3,
+        .stage-card:hover p { color: white; }
+        .stage-card:hover .learn-more { color: rgba(255,255,255,0.7); }
+        .stage-card:hover .learn-more::after { background: white; }
+
+        .stage-icon {
+            width: 52px; height: 52px;
+            background: var(--blush-light);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            transition: background 0.4s;
+        }
+        .stage-card:hover .stage-icon { background: rgba(255,255,255,0.2); }
+
+        .stage-card h3 {
+            font-size: 1.35rem;
+            color: var(--text);
+            margin-bottom: 14px;
+            transition: color 0.4s;
+        }
+        .stage-card p {
+            font-size: 0.88rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            transition: color 0.4s;
+        }
+        .learn-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 24px;
+            font-size: 0.8rem;
+            color: var(--blush-deep);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.4s;
+        }
+        .learn-more::after {
+            content: '→';
+            transition: transform 0.3s;
+        }
+        .learn-more:hover::after { transform: translateX(4px); }
+
+        /* ===================== PAINS ===================== */
+        .pains {
+            padding: 120px 60px;
+            background: var(--cream);
+        }
+        .pains-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .pains-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        .pains-image-wrap {
+            position: relative;
+        }
+        .pains-blob {
+            width: 100%;
+            padding-bottom: 115%;
+            border-radius: 45% 55% 40% 60% / 55% 45% 55% 45%;
+            overflow: hidden;
+            background: var(--blush-light);
+            position: relative;
+        }
+        .pains-blob img {
+            position: absolute;
+            inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+        .pains-side-dots {
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .pains-content .eyebrow {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--blush-deep);
+            font-weight: 500;
+            margin-bottom: 20px;
+            display: block;
+        }
+        .pains-content h2 {
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            margin-bottom: 14px;
+            line-height: 1.15;
+        }
+        .pains-content > p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .pains-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        .pain-card {
+            padding: 24px;
+            background: var(--white);
+            border-radius: 20px;
+            border-top: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        .pain-card:hover {
+            border-top-color: var(--blush);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(201,125,138,0.12);
+        }
+        .pain-card h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+        .pain-card p {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* ===================== SPECIALIST ===================== */
+        .specialist {
+            background: var(--white);
+            padding: 120px 60px;
+        }
+        .spec-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 80px;
+            align-items: center;
+        }
+        .spec-image-wrap { position: relative; }
+        .spec-blob {
+            width: 100%;
+            padding-bottom: 125%;
+            border-radius: 55% 45% 50% 50% / 45% 55% 45% 55%;
+            overflow: hidden;
+            background: var(--blush-light);
+            position: relative;
+        }
+        .spec-blob img {
+            position: absolute;
+            inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+        .spec-badge {
+            position: absolute;
+            bottom: 30px;
+            right: -20px;
+            background: var(--burgundy);
+            color: white;
+            padding: 18px 24px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(107,39,55,0.3);
+        }
+        .spec-badge strong {
+            display: block;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+        }
+
+        .spec-text .eyebrow {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--blush-deep);
+            font-weight: 500;
+            margin-bottom: 20px;
+            display: block;
+        }
+        .spec-text h2 {
+            font-size: clamp(2.2rem, 3.5vw, 3.4rem);
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+        .spec-text p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+        .spec-text blockquote {
+            border-left: 3px solid var(--blush);
+            padding: 20px 28px;
+            background: var(--cream);
+            border-radius: 0 20px 20px 0;
+            margin: 30px 0;
+        }
+        .spec-text blockquote p {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.15rem;
+            color: var(--text);
+            margin-bottom: 0;
+        }
+
+        .expertise-bars { margin-top: 32px; }
+        .bar-item { margin-bottom: 18px; }
+        .bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .bar-track {
+            height: 6px;
+            background: var(--blush-light);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .bar-fill {
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--blush), var(--blush-deep));
+            animation: barGrow 1.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        @keyframes barGrow {
+            from { width: 0 !important; }
+        }
+
+        .spec-cta {
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .btn-outline {
+            display: inline-block;
+            padding: 15px 36px;
+            border: 1.5px solid var(--blush-deep);
+            color: var(--blush-deep);
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .btn-outline:hover {
+            background: var(--blush-deep);
+            color: white;
+        }
+
+        /* ===================== FOOTER ===================== */
+        footer {
+            background: var(--text);
+            color: rgba(255,255,255,0.8);
+            padding: 70px 60px 40px;
+        }
+        .footer-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+        .footer-brand h3 {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 16px;
+        }
+        .footer-brand p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.5);
+        }
+        .footer-col h4 {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--blush);
+            margin-bottom: 20px;
+        }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li {
+            margin-bottom: 12px;
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .footer-col ul li:hover { color: var(--blush-light); }
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.3);
+        }
+
+        /* ===================== DECORATIVE ===================== */
+        .sparkle {
+            display: inline-block;
+            font-size: 1.4rem;
+        }
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* ===================== RESPONSIVE ===================== */
+        @media (max-width: 1000px) {
+            nav { padding: 20px 30px; }
+            .nav-links { display: none; }
+            .about, .pains-layout, .spec-inner { grid-template-columns: 1fr; gap: 50px; }
+            .about-image-wrap, .pains-image-wrap { order: -1; }
+            .about { padding: 80px 30px; }
+            .stages { padding: 80px 30px; }
+            .stages-grid { grid-template-columns: 1fr 1fr; }
+            .pains { padding: 80px 30px; }
+            .specialist { padding: 80px 30px; }
+            footer { padding: 60px 30px 30px; }
+            .footer-inner { grid-template-columns: 1fr; gap: 40px; }
+            .hero-content { padding: 0 30px; }
+            .stats-row { gap: 20px; }
+            .stat { padding: 16px 20px; }
+        }
+        @media (max-width: 600px) {
+            .stages-grid { grid-template-columns: 1fr; }
+            .pains-list { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+
+    <!-- NAV -->
+    <nav id="navbar">
+        <a href="#" class="nav-logo">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M9 1L10.8 6.6H17L12 10.2L13.8 15.8L9 12.2L4.2 15.8L6 10.2L1 6.6H7.2L9 1Z" fill="white" opacity="0.9"/>
+            </svg>
+            Добаюкивание
+        </a>
+        <ul class="nav-links">
+            <li><a href="#about">О практике</a></li>
+            <li><a href="#stages">Метод</a></li>
+            <li><a href="#who">Для кого</a></li>
+            <li><a href="#specialist">Елена</a></li>
+            <li><a href="#register">Записаться</a></li>
+        </ul>
+    </nav>
 
     <!-- HERO -->
     <section class="hero">
@@ -130,100 +798,266 @@
         </video>
         <div class="hero-overlay"></div>
 
+        <span class="star star-1">✦</span>
+        <span class="star star-2">✦</span>
+
         <div class="hero-content">
-            <p style="text-transform: uppercase; letter-spacing: 5px; margin-bottom: 20px;">Елена Иванова</p>
-            <h1>Добаюкивание</h1>
-            <p>Практика реставрации базового доверия миру. Исцеление вашего внутреннего ребенка через нежность и принятие.</p>
-            <a href="#about" class="btn">Пойти в глубину</a>
+            <div class="hero-label">Елена Иванова</div>
+            <h1>Добаюкивание<br><em>вашей души</em></h1>
+            <p class="hero-desc">Практика реставрации базового доверия миру. Исцеление вашего внутреннего ребёнка через нежность и безусловное принятие.</p>
+            <div class="hero-actions">
+                <a href="#about" class="btn-primary">Пойти в глубину</a>
+                <a href="#stages" class="btn-play">
+                    <div class="play-circle">
+                        <svg width="12" height="14" viewBox="0 0 12 14" fill="none">
+                            <path d="M1 1L11 7L1 13V1Z" fill="white"/>
+                        </svg>
+                    </div>
+                    Узнать больше
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- СУТЬ ИЗ САЙТА -->
-    <section id="about" class="container">
-        <div class="section-header">
-            <h2>О чем эта практика?</h2>
-            <p>Это возможность получить тот опыт безусловной любви, которого не хватило в детстве</p>
-        </div>
-        <div style="max-width: 800px; margin: 0 auto; text-align: center; font-size: 1.2rem; color: #554a4c;">
-            <p>Добаюкивание — это телесно-ориентированная практика, созданная для того, чтобы взрослый человек смог вернуться в точку своего начала. В мягком покачивании гамака, имитирующего материнскую утробу, вы заново проживаете ключевые этапы формирования вашей психики.</p>
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="about">
+            <div class="about-image-wrap reveal">
+                <div class="about-image-blob">
+                    <!-- Placeholder — замените на реальное фото -->
+                    <div style="position:absolute;inset:0;background:linear-gradient(135deg,var(--blush-light),var(--blush));display:flex;align-items:center;justify-content:center;">
+                        <div style="text-align:center;color:var(--blush-deep);">
+                            <div style="font-size:4rem;">🌸</div>
+                            <p style="font-size:0.8rem;margin-top:8px;opacity:0.6;">Фото специалиста</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="side-dots">
+                    <div class="dot dot-1"></div>
+                    <div class="dot dot-2"></div>
+                    <div class="dot dot-3"></div>
+                </div>
+            </div>
+            <div class="about-text">
+                <div class="eyebrow reveal">О практике</div>
+                <h2 class="reveal reveal-delay-1">Добро пожаловать<br>в <em>Добаюкивание</em></h2>
+                <p class="reveal reveal-delay-2">Добаюкивание — это телесно-ориентированная практика, созданная для того, чтобы взрослый человек смог вернуться в точку своего начала.</p>
+                <p class="reveal reveal-delay-2">В мягком покачивании, имитирующем материнскую утробу, вы заново проживаете ключевые этапы формирования вашей психики. Это возможность получить тот опыт безусловной любви, которого не хватило в детстве.</p>
+
+                <div class="stats-row reveal reveal-delay-3">
+                    <div class="stat">
+                        <div class="stat-num">5+</div>
+                        <div class="stat-label">лет практики</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-num">200+</div>
+                        <div class="stat-label">сессий</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-num">98%</div>
+                        <div class="stat-label">отзывов</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- ТРИ ЭТАПА (МЕТОД) -->
-    <section style="background: var(--soft-bg);">
-        <div class="container">
+    <!-- STAGES -->
+    <section class="stages" id="stages">
+        <div class="stages-inner">
             <div class="section-header">
-                <h2>Три этапа реставрации</h2>
+                <span class="eyebrow">✦ Метод ✦</span>
+                <h2>Мы поможем вам<br>обрести себя</h2>
+                <p>Четыре направления работы с вашим внутренним ребёнком</p>
             </div>
             <div class="stages-grid">
-                <div class="stage-card">
-                    <div class="stage-num">01</div>
+                <div class="stage-card reveal">
+                    <div class="stage-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c97d8a" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
                     <h3>Утроба</h3>
                     <p>Состояние полной безопасности, тишины и тепла. Время, когда вы просто есть, и этого уже достаточно.</p>
+                    <a href="#register" class="learn-more">Узнать больше</a>
                 </div>
-                <div class="stage-card">
-                    <div class="stage-num">02</div>
+                <div class="stage-card reveal reveal-delay-1">
+                    <div class="stage-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c97d8a" stroke-width="1.5">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10"/>
+                            <path d="M12 8v4l3 3"/>
+                        </svg>
+                    </div>
                     <h3>Рождение</h3>
                     <p>Перепроживание момента выхода в мир. Мягкое появление там, где вас ждут и где вам рады.</p>
+                    <a href="#register" class="learn-more">Узнать больше</a>
                 </div>
-                <div class="stage-card">
-                    <div class="stage-num">03</div>
+                <div class="stage-card reveal reveal-delay-2">
+                    <div class="stage-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c97d8a" stroke-width="1.5">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                    </div>
                     <h3>Баюканье</h3>
-                    <p>Первые объятия, колыбельные и слова принятия, которые формируют вашу внутреннюю опору.</p>
+                    <p>Первые объятия, колыбельные и слова принятия, формирующие вашу внутреннюю опору.</p>
+                    <a href="#register" class="learn-more">Узнать больше</a>
+                </div>
+                <div class="stage-card reveal reveal-delay-3">
+                    <div class="stage-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c97d8a" stroke-width="1.5">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3>Доверие</h3>
+                    <p>Восстановление базового ощущения безопасности мира и своего права просто быть.</p>
+                    <a href="#register" class="learn-more">Узнать больше</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- БОЛИ (ДЛЯ КОГО) -->
-    <section class="pains">
-        <div class="container">
-            <div class="section-header">
-                <h2 style="color: white;">Кому это необходимо?</h2>
-                <p style="color: rgba(255,255,255,0.7);">Если эти чувства знакомы вам, практика поможет найти выход</p>
-            </div>
-            <div class="pains-grid">
-                <div class="pain-item">
-                    <h4>Чувство одиночества</h4>
-                    <p>Когда даже среди людей вы ощущаете себя «отдельным», ненужным или непонятым.</p>
+    <!-- WHO NEEDS IT -->
+    <section class="pains" id="who">
+        <div class="pains-inner">
+            <div class="pains-layout">
+                <div class="pains-content">
+                    <span class="eyebrow reveal">✦ Для кого ✦</span>
+                    <h2 class="reveal reveal-delay-1">Кому это<br>необходимо?</h2>
+                    <p class="reveal reveal-delay-2">Если эти чувства знакомы вам — практика поможет найти выход и обрести внутреннюю опору.</p>
+                    <div class="pains-list">
+                        <div class="pain-card reveal reveal-delay-1">
+                            <h4>Одиночество</h4>
+                            <p>Когда даже среди людей вы ощущаете себя «отдельным», ненужным или непонятым.</p>
+                        </div>
+                        <div class="pain-card reveal reveal-delay-2">
+                            <h4>Тревога</h4>
+                            <p>Ожидание подвоха от жизни, неумение расслабиться и довериться обстоятельствам.</p>
+                        </div>
+                        <div class="pain-card reveal reveal-delay-3">
+                            <h4>Заслуживание</h4>
+                            <p>Когда вы чувствуете, что вас можно любить только за достижения или «хорошесть».</p>
+                        </div>
+                        <div class="pain-card reveal reveal-delay-4">
+                            <h4>Поиск опоры</h4>
+                            <p>Если внутри нет ощущения «я справлюсь», и вы ищете подтверждение ценности вовне.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="pain-item">
-                    <h4>Постоянная тревога</h4>
-                    <p>Ожидание подвоха от жизни, неумение расслабиться и довериться обстоятельствам.</p>
-                </div>
-                <div class="pain-item">
-                    <h4>Заслуживание любви</h4>
-                    <p>Когда вы чувствуете, что вас можно любить только за достижения, помощь или «хорошесть».</p>
-                </div>
-                <div class="pain-item">
-                    <h4>Поиск опоры</h4>
-                    <p>Если внутри нет ощущения «я справлюсь», и вы постоянно ищете подтверждение своей ценности вовне.</p>
+                <div class="pains-image-wrap reveal">
+                    <div class="pains-blob">
+                        <div style="position:absolute;inset:0;background:linear-gradient(160deg,var(--blush-light),var(--blush));display:flex;align-items:center;justify-content:center;">
+                            <div style="text-align:center;color:var(--blush-deep);">
+                                <div style="font-size:5rem;">🌷</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pains-side-dots">
+                        <div class="dot dot-3"></div>
+                        <div class="dot dot-2"></div>
+                        <div class="dot dot-1"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- СПЕЦИАЛИСТ ЕЛЕНА ИВАНОВА -->
-    <section class="specialist">
-        <div class="container spec-flex">
+    <!-- SPECIALIST -->
+    <section class="specialist" id="specialist">
+        <div class="spec-inner">
+            <div class="spec-image-wrap reveal">
+                <div class="spec-blob">
+                    <div style="position:absolute;inset:0;background:linear-gradient(145deg,var(--blush-light),var(--blush));display:flex;align-items:center;justify-content:center;">
+                        <div style="text-align:center;color:var(--blush-deep);">
+                            <div style="font-size:5rem;">🌸</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="spec-badge">
+                    <strong>7+</strong>
+                    лет опыта
+                </div>
+            </div>
             <div class="spec-text">
-                <p style="color: var(--accent-dark); font-weight: 600; text-transform: uppercase; letter-spacing: 2px;">Ваш проводник</p>
-                <h2>Елена Иванова</h2>
-                <p>Мастер практики «Добаюкивание», специалист по работе с глубинными детскими дефицитами.</p>
-                <p><i>«Моя роль в практике — стать для вас теми бережными руками и тем принимающим сердцем, которые помогут вашему внутреннему ребенку наконец-то расслабиться и почувствовать: ТЫ ДОМА. ТЕБЕ МОЖНО БЫТЬ».</i></p>
-                <br>
-                <a href="#register" class="btn" style="background: var(--accent); color: white;">Записаться на сессию</a>
+                <span class="eyebrow reveal">✦ Ваш проводник ✦</span>
+                <h2 class="reveal reveal-delay-1">Елена<br>Иванова</h2>
+                <p class="reveal reveal-delay-2">Мастер практики «Добаюкивание», специалист по работе с глубинными детскими дефицитами.</p>
+
+                <blockquote class="reveal reveal-delay-2">
+                    <p>«Моя роль — стать для вас теми бережными руками и тем принимающим сердцем, которые помогут вашему внутреннему ребёнку наконец-то расслабиться и почувствовать: ТЫ ДОМА. ТЕБЕ МОЖНО БЫТЬ».</p>
+                </blockquote>
+
+                <div class="expertise-bars reveal reveal-delay-3">
+                    <div class="bar-item">
+                        <div class="bar-label"><span>Телесно-ориентированная терапия</span><span>90%</span></div>
+                        <div class="bar-track"><div class="bar-fill" style="width:90%"></div></div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label"><span>Работа с внутренним ребёнком</span><span>95%</span></div>
+                        <div class="bar-track"><div class="bar-fill" style="width:95%"></div></div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-label"><span>Регрессивные техники</span><span>85%</span></div>
+                        <div class="bar-track"><div class="bar-fill" style="width:85%"></div></div>
+                    </div>
+                </div>
+
+                <div class="spec-cta reveal reveal-delay-4" id="register">
+                    <a href="mailto:elena@example.com" class="btn-primary">Записаться на сессию</a>
+                    <a href="#about" class="btn-outline">Узнать больше</a>
+                </div>
             </div>
-            <!-- Если захотите добавить фото Елены позже, блок для него предусмотрен в дизайне через CSS -->
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
-        <div class="container">
-            <p>© 2024 Елена Иванова — Практика реставрации базового доверия «Добаюкивание»</p>
-            <p style="opacity: 0.5; font-size: 0.8rem; margin-top: 15px;">По методу Виктории Аверкиевой. Все права защищены.</p>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h3>Добаюкивание</h3>
+                <p>Практика реставрации базового доверия миру. По методу Виктории Аверкиевой.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Навигация</h4>
+                <ul>
+                    <li>О практике</li>
+                    <li>Метод</li>
+                    <li>Для кого</li>
+                    <li>Елена Иванова</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Контакты</h4>
+                <ul>
+                    <li>Telegram</li>
+                    <li>Instagram</li>
+                    <li>Записаться</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2024 Елена Иванова. Все права защищены.</span>
+            <span>По методу Виктории Аверкиевой</span>
         </div>
     </footer>
 
+    <script>
+        // Sticky nav
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
