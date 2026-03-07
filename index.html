@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Елена Иванова — Добаюкивание | Практика реставрации базового доверия</title>
+    <title>Елена Иванова — Добаюкивание | Реставрация базового доверия миру</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,200 +21,208 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body { font-family: 'Manrope', sans-serif; color: var(--text); background: var(--white); line-height: 1.7; overflow-x: hidden; }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 400; }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 25px; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 400; line-height: 1.2; }
 
-        /* --- Hero Section --- */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 25px; }
+
+        /* --- Hero Section (Без фото) --- */
         .hero {
             position: relative;
-            min-height: 100vh;
+            height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
             overflow: hidden;
-            padding: 100px 0;
-            background-color: var(--soft-bg); /* Цвет на случай если видео не грузится */
+            background: #2a2223; /* Заглушка до загрузки видео */
         }
 
         .hero-video {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 50%; left: 50%;
+            min-width: 100%; min-height: 100%;
+            width: auto; height: auto;
+            transform: translate(-50%, -50%);
             object-fit: cover;
             z-index: 1;
-            filter: brightness(0.95);
+            opacity: 0.6;
         }
 
         .hero-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(90deg, rgba(255,255,255,1) 35%, rgba(255,255,255,0.2) 100%);
+            background: radial-gradient(circle, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%);
             z-index: 2;
         }
 
-        .hero-grid {
+        .hero-content {
             position: relative;
             z-index: 10;
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            align-items: center;
-            gap: 40px;
+            max-width: 900px;
+            padding: 0 20px;
+            animation: fadeIn 2s ease;
         }
 
-        .hero-text h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: 25px; color: var(--text); line-height: 1.1; }
-        .hero-text p { font-size: 1.2rem; margin-bottom: 40px; max-width: 500px; font-weight: 300; }
-
-        /* ФОТО БЕЗ РАМКИ */
-        .hero-image-wrap { 
-            position: relative; 
-            animation: float 6s ease-in-out infinite;
-        }
-        .hero-image-wrap img {
-            width: 100%;
-            max-width: 500px;
-            display: block;
-            /* Форма арки без дополнительных рамок и границ */
-            border-radius: 250px 250px 40px 40px; 
-            box-shadow: 0 40px 80px rgba(0,0,0,0.1);
-            background-color: var(--accent); /* Мягкий фон если картинка не грузится */
-        }
+        .hero h1 { font-size: clamp(2.5rem, 8vw, 5.5rem); margin-bottom: 25px; }
+        .hero p { font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 200; margin-bottom: 45px; letter-spacing: 1px; }
 
         /* --- Buttons --- */
         .btn {
             display: inline-block;
             padding: 22px 50px;
-            background: var(--accent);
-            color: var(--white);
+            background: var(--white);
+            color: var(--text);
             text-decoration: none;
             border-radius: 60px;
             text-transform: uppercase;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             letter-spacing: 2px;
             font-weight: 600;
             transition: var(--transition);
         }
-        .btn:hover { transform: translateY(-5px); background: var(--accent-dark); box-shadow: 0 15px 30px rgba(232, 167, 181, 0.4); }
+        .btn:hover { transform: scale(1.05); background: var(--accent); color: white; }
 
-        /* --- Content Blocks (Method) --- */
-        .section-header { text-align: center; margin-bottom: 80px; }
-        .section-header h2 { font-size: 3rem; margin-bottom: 20px; }
-        
-        .stages { padding: 120px 0; background: var(--white); }
+        /* --- Section Styling --- */
+        section { padding: 120px 0; }
+        .section-header { text-align: center; max-width: 800px; margin: 0 auto 80px; }
+        .section-header h2 { font-size: 3rem; margin-bottom: 20px; color: var(--text); }
+        .section-header p { font-size: 1.2rem; color: #7a6b6e; font-style: italic; }
+
+        /* --- Three Stages (Метод) --- */
         .stages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
-        .stage-card { text-align: center; padding: 30px; }
-        .stage-num { font-family: 'Playfair Display', serif; font-size: 4rem; color: var(--accent); opacity: 0.4; line-height: 1; margin-bottom: 10px; }
+        .stage-card { text-align: center; padding: 40px 20px; background: var(--soft-bg); border-radius: 30px; transition: 0.3s; }
+        .stage-card:hover { transform: translateY(-10px); background: #f9ecee; }
+        .stage-num { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--accent); opacity: 0.5; margin-bottom: 10px; }
         .stage-card h3 { margin-bottom: 20px; font-size: 1.6rem; }
 
-        /* --- Pain points --- */
-        .pains { padding: 120px 0; background: var(--soft-bg); }
-        .pains-list { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .pain-item { background: white; padding: 40px; border-radius: 20px; display: flex; align-items: flex-start; gap: 20px; }
-        .pain-item span { font-size: 1.5rem; color: var(--accent); }
+        /* --- Pain Points (Для кого) --- */
+        .pains { background: var(--text); color: var(--white); }
+        .pains-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .pain-item { border-left: 2px solid var(--accent); padding-left: 30px; }
+        .pain-item h4 { font-size: 1.4rem; margin-bottom: 15px; color: var(--accent); }
 
-        /* --- Author Section --- */
-        .author { padding: 120px 0; }
-        .author-flex { display: flex; align-items: center; gap: 60px; }
-        .author-img { flex: 1; }
-        .author-img img { width: 100%; border-radius: 30px; }
-        .author-text { flex: 1.2; }
-        .author-text h2 { font-size: 3rem; margin-bottom: 25px; }
+        /* --- Specialist Block --- */
+        .specialist { background: var(--soft-bg); }
+        .spec-flex { display: flex; align-items: center; gap: 60px; }
+        .spec-text { flex: 1.5; }
+        .spec-text h2 { font-size: 3rem; margin-bottom: 30px; }
+        .spec-text p { font-size: 1.15rem; margin-bottom: 20px; }
 
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        /* --- Footer --- */
+        footer { background: #2a2223; color: white; padding: 60px 0; text-align: center; }
 
-        @media (max-width: 992px) {
-            .hero-grid, .author-flex, .stages-grid, .pains-list { grid-template-columns: 1fr; text-align: center; }
-            .hero-text p { margin: 0 auto 40px; }
-            .hero-overlay { background: rgba(255,255,255,0.95); }
-            .hero-image-wrap img { max-width: 350px; margin: 0 auto; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (max-width: 900px) {
+            .stages-grid, .pains-grid, .spec-flex { grid-template-columns: 1fr; flex-direction: column; }
+            .section-header h2 { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ПЕРВЫЙ ЭКРАН -->
+    <!-- HERO -->
     <section class="hero">
         <video class="hero-video" autoplay muted loop playsinline>
             <source src="images/hero-bg.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
 
-        <div class="container hero-grid">
-            <div class="hero-text">
-                <p style="text-transform: uppercase; letter-spacing: 4px; color: var(--accent-dark); font-weight: 600; margin-bottom: 15px;">Елена Иванова</p>
-                <h1>Добаюкивание</h1>
-                <p>Практика реставрации базового доверия миру. Перепроживите опыт младенчества, чтобы обрести внутреннюю опору, которой не хватало много лет.</p>
-                <a href="#booking" class="btn">Записаться на практику</a>
-            </div>
-
-            <div class="hero-image-wrap">
-                <!-- ВАЖНО: сохраните ваше фото как hero-photo.jpg в папке images -->
-                <img src="images/hero-photo.jpg" alt="Елена Иванова — Добаюкивание" onerror="this.src='https://images.unsplash.com/photo-1516589091380-5d8e87df6999?auto=format&fit=crop&q=80&w=800'">
-            </div>
+        <div class="hero-content">
+            <p style="text-transform: uppercase; letter-spacing: 5px; margin-bottom: 20px;">Елена Иванова</p>
+            <h1>Добаюкивание</h1>
+            <p>Практика реставрации базового доверия миру. Исцеление вашего внутреннего ребенка через нежность и принятие.</p>
+            <a href="#about" class="btn">Пойти в глубину</a>
         </div>
     </section>
 
-    <!-- БЛОК ПРОБЛЕМ (С ОФИЦИАЛЬНОГО САЙТА) -->
-    <section class="pains">
-        <div class="container">
-            <div class="section-header">
-                <h2>Кому это необходимо?</h2>
-                <p>Дефицит безусловной любви в детстве мешает нам быть счастливыми взрослыми</p>
-            </div>
-            <div class="pains-list">
-                <div class="pain-item"><span>✕</span><p>Чувствуете себя одиноко, даже когда вы не одни</p></div>
-                <div class="pain-item"><span>✕</span><p>Постоянно заслуживаете любовь достижениями и хорошим поведением</p></div>
-                <div class="pain-item"><span>✕</span><p>Вам трудно доверять людям и строить глубокие отношения</p></div>
-                <div class="pain-item"><span>✕</span><p>Внутри живет фоновая тревога и ощущение «со мной что-то не так»</p></div>
-            </div>
+    <!-- СУТЬ ИЗ САЙТА -->
+    <section id="about" class="container">
+        <div class="section-header">
+            <h2>О чем эта практика?</h2>
+            <p>Это возможность получить тот опыт безусловной любви, которого не хватило в детстве</p>
+        </div>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center; font-size: 1.2rem; color: #554a4c;">
+            <p>Добаюкивание — это телесно-ориентированная практика, созданная для того, чтобы взрослый человек смог вернуться в точку своего начала. В мягком покачивании гамака, имитирующего материнскую утробу, вы заново проживаете ключевые этапы формирования вашей психики.</p>
         </div>
     </section>
 
-    <!-- ТРИ ЭТАПА (С ОФИЦИАЛЬНОГО САЙТА) -->
-    <section class="stages" id="about">
+    <!-- ТРИ ЭТАПА (МЕТОД) -->
+    <section style="background: var(--soft-bg);">
         <div class="container">
             <div class="section-header">
-                <h2>Как проходит практика</h2>
-                <p>Три этапа возвращения к себе в сопровождении Елены Ивановой</p>
+                <h2>Три этапа реставрации</h2>
             </div>
             <div class="stages-grid">
                 <div class="stage-card">
                     <div class="stage-num">01</div>
                     <h3>Утроба</h3>
-                    <p>В мягком гамаке вы возвращаетесь в состояние полной безопасности и тепла материнского тела.</p>
+                    <p>Состояние полной безопасности, тишины и тепла. Время, когда вы просто есть, и этого уже достаточно.</p>
                 </div>
                 <div class="stage-card">
                     <div class="stage-num">02</div>
                     <h3>Рождение</h3>
-                    <p>Процесс мягкого выхода в мир, где вас ждут, где вам рады и где вы желанны.</p>
+                    <p>Перепроживание момента выхода в мир. Мягкое появление там, где вас ждут и где вам рады.</p>
                 </div>
                 <div class="stage-card">
                     <div class="stage-num">03</div>
-                    <h3>Добаюкивание</h3>
-                    <p>Телесный контакт, колыбельные и важные слова, которые исцеляют вашего внутреннего ребенка.</p>
+                    <h3>Баюканье</h3>
+                    <p>Первые объятия, колыбельные и слова принятия, которые формируют вашу внутреннюю опору.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ОБ АВТОРЕ -->
-    <section class="author">
-        <div class="container author-flex">
-            <div class="author-img">
-                <img src="images/main-photo.jpg" alt="Елена Иванова" onerror="this.src='https://images.unsplash.com/photo-1544126592-807daf21565c?auto=format&fit=crop&q=80&w=800'">
+    <!-- БОЛИ (ДЛЯ КОГО) -->
+    <section class="pains">
+        <div class="container">
+            <div class="section-header">
+                <h2 style="color: white;">Кому это необходимо?</h2>
+                <p style="color: rgba(255,255,255,0.7);">Если эти чувства знакомы вам, практика поможет найти выход</p>
             </div>
-            <div class="author-text">
-                <p style="color: var(--accent-dark); font-weight: 600; text-transform: uppercase; margin-bottom: 10px;">Проводник в мир доверия</p>
-                <h2>Елена Иванова</h2>
-                <p>Мастер практики «Добаюкивание», который создаёт для вас безопасное пространство для исцеления души. </p>
-                <p style="margin-top: 20px;">«Моя задача — помочь вам почувствовать то самое базовое доверие, на котором строится вся дальнейшая жизнь. Чтобы вы могли сказать себе: "Я есть. Мне можно. Я любим"».</p>
-                <br>
-                <a href="#booking" class="btn">Связаться в Telegram</a>
+            <div class="pains-grid">
+                <div class="pain-item">
+                    <h4>Чувство одиночества</h4>
+                    <p>Когда даже среди людей вы ощущаете себя «отдельным», ненужным или непонятым.</p>
+                </div>
+                <div class="pain-item">
+                    <h4>Постоянная тревога</h4>
+                    <p>Ожидание подвоха от жизни, неумение расслабиться и довериться обстоятельствам.</p>
+                </div>
+                <div class="pain-item">
+                    <h4>Заслуживание любви</h4>
+                    <p>Когда вы чувствуете, что вас можно любить только за достижения, помощь или «хорошесть».</p>
+                </div>
+                <div class="pain-item">
+                    <h4>Поиск опоры</h4>
+                    <p>Если внутри нет ощущения «я справлюсь», и вы постоянно ищете подтверждение своей ценности вовне.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer style="padding: 60px 0; background: var(--text); color: white; text-align: center;">
-        <p>© 2024 Елена Иванова — Официальная практика Добаюкивание</p>
-        <p style="opacity: 0.5; font-size: 0.8rem; margin-top: 10px;">Метод Виктории Аверкиевой. Все права защищены.</p>
+    <!-- СПЕЦИАЛИСТ ЕЛЕНА ИВАНОВА -->
+    <section class="specialist">
+        <div class="container spec-flex">
+            <div class="spec-text">
+                <p style="color: var(--accent-dark); font-weight: 600; text-transform: uppercase; letter-spacing: 2px;">Ваш проводник</p>
+                <h2>Елена Иванова</h2>
+                <p>Мастер практики «Добаюкивание», специалист по работе с глубинными детскими дефицитами.</p>
+                <p><i>«Моя роль в практике — стать для вас теми бережными руками и тем принимающим сердцем, которые помогут вашему внутреннему ребенку наконец-то расслабиться и почувствовать: ТЫ ДОМА. ТЕБЕ МОЖНО БЫТЬ».</i></p>
+                <br>
+                <a href="#register" class="btn" style="background: var(--accent); color: white;">Записаться на сессию</a>
+            </div>
+            <!-- Если захотите добавить фото Елены позже, блок для него предусмотрен в дизайне через CSS -->
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2024 Елена Иванова — Практика реставрации базового доверия «Добаюкивание»</p>
+            <p style="opacity: 0.5; font-size: 0.8rem; margin-top: 15px;">По методу Виктории Аверкиевой. Все права защищены.</p>
+        </div>
     </footer>
 
 </body>
