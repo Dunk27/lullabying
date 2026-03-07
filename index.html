@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Елена Иванова — Добаюкивание | Реставрация базового доверия миру</title>
+    <title>Елена Иванова — Добаюкивание | Практика реставрации базового доверия</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,8 +21,7 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body { font-family: 'Manrope', sans-serif; color: var(--text); background: var(--white); line-height: 1.7; overflow-x: hidden; }
-
-        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 400; line-height: 1.2; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 400; }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 25px; }
 
@@ -33,40 +32,50 @@
             display: flex;
             align-items: center;
             overflow: hidden;
-            padding: 80px 0;
+            padding: 100px 0;
+            background-color: var(--soft-bg); /* Цвет на случай если видео не грузится */
         }
 
         .hero-video {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover;
-            z-index: -2;
-            filter: brightness(0.9);
+            z-index: 1;
+            filter: brightness(0.95);
         }
 
         .hero-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(90deg, rgba(255,255,255,0.98) 35%, rgba(255,255,255,0.3) 100%);
-            z-index: -1;
+            background: linear-gradient(90deg, rgba(255,255,255,1) 35%, rgba(255,255,255,0.2) 100%);
+            z-index: 2;
         }
 
         .hero-grid {
+            position: relative;
+            z-index: 10;
             display: grid;
-            grid-template-columns: 1.3fr 1fr;
+            grid-template-columns: 1.2fr 1fr;
             align-items: center;
             gap: 40px;
         }
 
-        .hero-text h1 { font-size: clamp(2.5rem, 5vw, 4.2rem); margin-bottom: 25px; color: var(--text); }
-        .hero-text p { font-size: 1.2rem; margin-bottom: 40px; max-width: 550px; font-weight: 300; color: #554a4c; }
+        .hero-text h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: 25px; color: var(--text); line-height: 1.1; }
+        .hero-text p { font-size: 1.2rem; margin-bottom: 40px; max-width: 500px; font-weight: 300; }
 
-        .hero-image-wrap { position: relative; display: flex; justify-content: center; animation: float 6s ease-in-out infinite; }
+        /* ФОТО БЕЗ РАМКИ */
+        .hero-image-wrap { 
+            position: relative; 
+            animation: float 6s ease-in-out infinite;
+        }
         .hero-image-wrap img {
             width: 100%;
-            max-width: 480px;
-            border-radius: 240px 240px 30px 30px; /* Элегантная арка без рамки */
-            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+            max-width: 500px;
+            display: block;
+            /* Форма арки без дополнительных рамок и границ */
+            border-radius: 250px 250px 40px 40px; 
+            box-shadow: 0 40px 80px rgba(0,0,0,0.1);
+            background-color: var(--accent); /* Мягкий фон если картинка не грузится */
         }
 
         /* --- Buttons --- */
@@ -85,50 +94,43 @@
         }
         .btn:hover { transform: translateY(-5px); background: var(--accent-dark); box-shadow: 0 15px 30px rgba(232, 167, 181, 0.4); }
 
-        /* --- Problems Section --- */
-        .problems { padding: 120px 0; background: var(--soft-bg); }
-        .section-header { text-align: center; max-width: 800px; margin: 0 auto 70px; }
+        /* --- Content Blocks (Method) --- */
+        .section-header { text-align: center; margin-bottom: 80px; }
         .section-header h2 { font-size: 3rem; margin-bottom: 20px; }
-        .section-header p { font-size: 1.1rem; color: #7a6b6e; font-style: italic; }
+        
+        .stages { padding: 120px 0; background: var(--white); }
+        .stages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .stage-card { text-align: center; padding: 30px; }
+        .stage-num { font-family: 'Playfair Display', serif; font-size: 4rem; color: var(--accent); opacity: 0.4; line-height: 1; margin-bottom: 10px; }
+        .stage-card h3 { margin-bottom: 20px; font-size: 1.6rem; }
 
-        .problems-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .problem-item { background: var(--white); padding: 40px; border-radius: 25px; border-bottom: 4px solid transparent; transition: var(--transition); }
-        .problem-item:hover { border-bottom: 4px solid var(--accent); transform: translateY(-5px); }
-        .problem-item h4 { margin-bottom: 15px; font-size: 1.3rem; color: var(--accent-dark); }
+        /* --- Pain points --- */
+        .pains { padding: 120px 0; background: var(--soft-bg); }
+        .pains-list { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .pain-item { background: white; padding: 40px; border-radius: 20px; display: flex; align-items: flex-start; gap: 20px; }
+        .pain-item span { font-size: 1.5rem; color: var(--accent); }
 
-        /* --- Methodology (The 3 Stages) --- */
-        .method { padding: 120px 0; }
-        .steps-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; }
-        .step-card { text-align: center; }
-        .step-circle { 
-            width: 100px; height: 100px; background: var(--soft-bg); border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; 
-            margin: 0 auto 25px; font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--accent);
-        }
-        .step-card h3 { margin-bottom: 15px; font-size: 1.5rem; }
-
-        /* --- Results Section --- */
-        .results { background: var(--text); color: var(--white); padding: 100px 0; }
-        .results-list { display: grid; grid-template-columns: 1fr 1fr; gap: 30px 60px; margin-top: 50px; }
-        .result-item { display: flex; align-items: flex-start; gap: 20px; font-size: 1.1rem; border-left: 2px solid var(--accent); padding-left: 20px; }
-
-        /* --- Footer --- */
-        footer { padding: 80px 0; background: var(--soft-bg); text-align: center; }
-        .footer-logo { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 20px; display: block; }
+        /* --- Author Section --- */
+        .author { padding: 120px 0; }
+        .author-flex { display: flex; align-items: center; gap: 60px; }
+        .author-img { flex: 1; }
+        .author-img img { width: 100%; border-radius: 30px; }
+        .author-text { flex: 1.2; }
+        .author-text h2 { font-size: 3rem; margin-bottom: 25px; }
 
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 
         @media (max-width: 992px) {
-            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-grid, .author-flex, .stages-grid, .pains-list { grid-template-columns: 1fr; text-align: center; }
             .hero-text p { margin: 0 auto 40px; }
-            .steps-container, .results-list { grid-template-columns: 1fr; }
-            .hero-overlay { background: rgba(255,255,255,0.9); }
+            .hero-overlay { background: rgba(255,255,255,0.95); }
+            .hero-image-wrap img { max-width: 350px; margin: 0 auto; }
         }
     </style>
 </head>
 <body>
 
-    <!-- HERO SECTION -->
+    <!-- ПЕРВЫЙ ЭКРАН -->
     <section class="hero">
         <video class="hero-video" autoplay muted loop playsinline>
             <source src="images/hero-bg.mp4" type="video/mp4">
@@ -138,47 +140,82 @@
         <div class="container hero-grid">
             <div class="hero-text">
                 <p style="text-transform: uppercase; letter-spacing: 4px; color: var(--accent-dark); font-weight: 600; margin-bottom: 15px;">Елена Иванова</p>
-                <h1>Добаюкивание: верните себе право на любовь</h1>
-                <p>Авторская практика реставрации базового доверия миру через перепроживание младенческого опыта в безопасном пространстве гамака.</p>
-                <a href="#about" class="btn">Обрести внутреннюю опору</a>
+                <h1>Добаюкивание</h1>
+                <p>Практика реставрации базового доверия миру. Перепроживите опыт младенчества, чтобы обрести внутреннюю опору, которой не хватало много лет.</p>
+                <a href="#booking" class="btn">Записаться на практику</a>
             </div>
 
             <div class="hero-image-wrap">
-                <img src="https://i.ibb.co/F83G24N/image.jpg" alt="Елена Иванова — мастер практики Добаюкивание">
+                <!-- ВАЖНО: сохраните ваше фото как hero-photo.jpg в папке images -->
+                <img src="images/hero-photo.jpg" alt="Елена Иванова — Добаюкивание" onerror="this.src='https://images.unsplash.com/photo-1516589091380-5d8e87df6999?auto=format&fit=crop&q=80&w=800'">
             </div>
         </div>
     </section>
 
-    <!-- боли / ДЛЯ КОГО -->
-    <section class="problems">
+    <!-- БЛОК ПРОБЛЕМ (С ОФИЦИАЛЬНОГО САЙТА) -->
+    <section class="pains">
         <div class="container">
             <div class="section-header">
-                <h2>Узнаете себя?</h2>
-                <p>Когда дефицит любви в детстве превращается в сложности во взрослой жизни</p>
+                <h2>Кому это необходимо?</h2>
+                <p>Дефицит безусловной любви в детстве мешает нам быть счастливыми взрослыми</p>
             </div>
-            <div class="problems-grid">
-                <div class="problem-item">
-                    <h4>Нет опоры</h4>
-                    <p>Чувствуете себя одиноко даже в толпе. Кажется, что мир — небезопасное место, где нужно всегда быть начеку.</p>
+            <div class="pains-list">
+                <div class="pain-item"><span>✕</span><p>Чувствуете себя одиноко, даже когда вы не одни</p></div>
+                <div class="pain-item"><span>✕</span><p>Постоянно заслуживаете любовь достижениями и хорошим поведением</p></div>
+                <div class="pain-item"><span>✕</span><p>Вам трудно доверять людям и строить глубокие отношения</p></div>
+                <div class="pain-item"><span>✕</span><p>Внутри живет фоновая тревога и ощущение «со мной что-то не так»</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ТРИ ЭТАПА (С ОФИЦИАЛЬНОГО САЙТА) -->
+    <section class="stages" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>Как проходит практика</h2>
+                <p>Три этапа возвращения к себе в сопровождении Елены Ивановой</p>
+            </div>
+            <div class="stages-grid">
+                <div class="stage-card">
+                    <div class="stage-num">01</div>
+                    <h3>Утроба</h3>
+                    <p>В мягком гамаке вы возвращаетесь в состояние полной безопасности и тепла материнского тела.</p>
                 </div>
-                <div class="problem-item">
-                    <h4>Синдром самозванца</h4>
-                    <p>Постоянно заслуживаете любовь достижениями, но внутри всё равно ощущаете себя «недостаточно хорошим».</p>
+                <div class="stage-card">
+                    <div class="stage-num">02</div>
+                    <h3>Рождение</h3>
+                    <p>Процесс мягкого выхода в мир, где вас ждут, где вам рады и где вы желанны.</p>
                 </div>
-                <div class="problem-item">
-                    <h4>Сложности в отношениях</h4>
-                    <p>Трудно доверять партнеру, страх близости или, наоборот, болезненная зависимость от другого человека.</p>
+                <div class="stage-card">
+                    <div class="stage-num">03</div>
+                    <h3>Добаюкивание</h3>
+                    <p>Телесный контакт, колыбельные и важные слова, которые исцеляют вашего внутреннего ребенка.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- СУТЬ МЕТОДА -->
-    <section class="method" id="about">
-        <div class="container">
-            <div class="section-header">
-                <h2>Путь к новому «Я»</h2>
-                <p>Вместе с Еленой Ивановой вы пройдете путь от зачатия до первых объятий</p>
+    <!-- ОБ АВТОРЕ -->
+    <section class="author">
+        <div class="container author-flex">
+            <div class="author-img">
+                <img src="images/main-photo.jpg" alt="Елена Иванова" onerror="this.src='https://images.unsplash.com/photo-1544126592-807daf21565c?auto=format&fit=crop&q=80&w=800'">
             </div>
-            
-            <div style="max-width: 900px; margin:
+            <div class="author-text">
+                <p style="color: var(--accent-dark); font-weight: 600; text-transform: uppercase; margin-bottom: 10px;">Проводник в мир доверия</p>
+                <h2>Елена Иванова</h2>
+                <p>Мастер практики «Добаюкивание», который создаёт для вас безопасное пространство для исцеления души. </p>
+                <p style="margin-top: 20px;">«Моя задача — помочь вам почувствовать то самое базовое доверие, на котором строится вся дальнейшая жизнь. Чтобы вы могли сказать себе: "Я есть. Мне можно. Я любим"».</p>
+                <br>
+                <a href="#booking" class="btn">Связаться в Telegram</a>
+            </div>
+        </div>
+    </section>
+
+    <footer style="padding: 60px 0; background: var(--text); color: white; text-align: center;">
+        <p>© 2024 Елена Иванова — Официальная практика Добаюкивание</p>
+        <p style="opacity: 0.5; font-size: 0.8rem; margin-top: 10px;">Метод Виктории Аверкиевой. Все права защищены.</p>
+    </footer>
+
+</body>
+</html>
