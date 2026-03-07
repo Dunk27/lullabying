@@ -1,22 +1,20 @@
---- START OF FILE index.html ---
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Виктория Аверкиева — Добаюкивание | Практика реставрации базового доверия</title>
+    <title>Елена Иванова — Добаюкивание | Практика реставрации базового доверия</title>
     
     <!-- Шрифты -->
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary: #9d7d64;      /* Теплый коричневый */
-            --accent: #d4a373;       /* Золотистый песок */
-            --light-bg: #faf7f2;    /* Цвет пудры / яичной скорлупы */
+            --pink-main: #e8a7b5; 
+            --pink-soft: #fceef0;
+            --text-dark: #4a3a3d;
             --white: #ffffff;
-            --text: #4a423d;        /* Глубокий кофейный */
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -24,8 +22,8 @@
         body {
             font-family: 'Manrope', sans-serif;
             line-height: 1.7;
-            color: var(--text);
-            background-color: var(--light-bg);
+            color: var(--text-dark);
+            background-color: var(--white);
             overflow-x: hidden;
         }
 
@@ -34,358 +32,182 @@
             font-weight: 400;
         }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
         /* --- Navigation --- */
         nav {
             padding: 25px 0;
-            background: rgba(250, 247, 242, 0.9);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            position: fixed;
+            position: absolute;
             width: 100%;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(157, 125, 100, 0.1);
         }
         .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         .logo {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             letter-spacing: 2px;
             text-decoration: none;
-            color: var(--primary);
-            font-weight: 700;
-        }
-        .nav-menu {
-            list-style: none;
-            display: flex;
-            gap: 30px;
-        }
-        .nav-menu a {
-            text-decoration: none;
-            color: var(--text);
-            font-size: 0.85rem;
+            color: var(--white);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 500;
-            transition: var(--transition);
         }
-        .nav-menu a:hover { color: var(--accent); }
 
         /* --- Hero Section --- */
         .hero {
-            padding: 180px 0 100px;
+            position: relative;
+            height: 100vh;
+            width: 100%;
             display: flex;
             align-items: center;
-            gap: 60px;
+            justify-content: center;
+            overflow: hidden;
+            color: var(--white);
+            text-align: center;
         }
-        .hero-text { flex: 1; }
-        .hero-text span {
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.9rem;
-            color: var(--primary);
-            display: block;
+
+        .video-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(74, 58, 61, 0.4), rgba(232, 167, 181, 0.3));
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            line-height: 1.1;
             margin-bottom: 20px;
         }
-        .hero-text h1 {
-            font-size: 4rem;
-            line-height: 1.1;
-            margin-bottom: 30px;
-            color: var(--primary);
-        }
-        .hero-text p {
-            font-size: 1.2rem;
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.3rem);
             margin-bottom: 40px;
-            max-width: 500px;
+            font-weight: 300;
+            letter-spacing: 1px;
             opacity: 0.9;
         }
 
-        .hero-image {
-            flex: 1;
-            position: relative;
-        }
-        .hero-image img {
-            width: 100%;
-            height: 600px;
-            object-fit: cover;
-            border-radius: 300px 300px 20px 20px; /* Элегантная арка */
-            box-shadow: 20px 20px 60px rgba(157, 125, 100, 0.15);
-        }
-        /* Декоративный элемент сзади фото */
-        .hero-image::after {
-            content: '';
-            position: absolute;
-            top: 40px;
-            right: -20px;
-            width: 100%;
-            height: 100%;
-            border: 1px solid var(--accent);
-            border-radius: 300px 300px 20px 20px;
-            z-index: -1;
-        }
-
         /* --- Buttons --- */
-        .btn {
+        .btn-primary {
             display: inline-block;
-            background: var(--primary);
-            color: var(--white);
-            padding: 20px 45px;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: var(--transition);
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            box-shadow: 0 10px 20px rgba(157, 125, 100, 0.2);
-        }
-        .btn:hover {
-            background: var(--accent);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(157, 125, 100, 0.3);
-        }
-
-        /* --- Stats Bar --- */
-        .stats {
+            padding: 22px 50px;
             background: var(--white);
-            padding: 60px 0;
-            margin-top: -50px;
-            position: relative;
-            z-index: 10;
-            border-radius: 20px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
-        }
-        .stat-item { text-align: center; border-right: 1px solid #eee; }
-        .stat-item:last-child { border: none; }
-        .stat-item h3 { font-size: 2.5rem; color: var(--primary); margin-bottom: 5px; }
-        .stat-item p { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: #999; }
-
-        /* --- Sections General --- */
-        section { padding: 120px 0; }
-        .section-header { text-align: center; max-width: 700px; margin: 0 auto 80px; }
-        .section-header h2 { font-size: 3rem; margin-bottom: 20px; color: var(--primary); }
-        .section-header p { font-size: 1.1rem; font-style: italic; }
-
-        /* --- For Who Card Design --- */
-        .for-who-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-        .for-who-card {
-            background: var(--white);
-            padding: 50px 40px;
-            border-radius: 30px;
-            transition: var(--transition);
-            text-align: center;
-        }
-        .for-who-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
-        .for-who-card .icon { font-size: 2.5rem; margin-bottom: 20px; display: block; }
-        .for-who-card h4 { font-size: 1.4rem; margin-bottom: 15px; font-family: 'Playfair Display', serif; }
-
-        /* --- About Section --- */
-        .about { background: var(--white); }
-        .about-wrapper { display: flex; align-items: center; gap: 80px; }
-        .about-img { flex: 1; }
-        .about-img img { width: 100%; border-radius: 20px; }
-        .about-text { flex: 1; }
-        .about-text h2 { font-size: 3rem; margin-bottom: 30px; color: var(--primary); }
-        .about-text p { margin-bottom: 20px; font-size: 1.1rem; }
-
-        /* --- Helps Grid --- */
-        .helps-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .help-box {
-            border: 1px solid rgba(157, 125, 100, 0.2);
-            padding: 30px;
-            border-radius: 15px;
-            transition: var(--transition);
-        }
-        .help-box:hover { background: var(--primary); color: white; }
-        .help-box h4 { margin-bottom: 10px; font-size: 1.2rem; }
-
-        /* --- Footer --- */
-        footer {
-            background: #2d2825;
-            color: #d4cdc7;
-            padding: 80px 0 40px;
-        }
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding-bottom: 50px;
-            margin-bottom: 40px;
-        }
-        .social-links a {
-            color: white;
-            margin-left: 20px;
+            color: var(--text-dark);
             text-decoration: none;
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 10px 20px;
-            border-radius: 30px;
+            border-radius: 60px;
             font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
             transition: var(--transition);
         }
-        .social-links a:hover { background: var(--accent); border-color: var(--accent); }
 
-        /* --- Mobile --- */
-        @media (max-width: 992px) {
-            .hero { flex-direction: column; text-align: center; padding-top: 120px; }
-            .hero-image img { height: 400px; border-radius: 200px 200px 20px 20px; }
-            .stats { grid-template-columns: repeat(2, 1fr); }
-            .for-who-grid { grid-template-columns: 1fr; }
-            .about-wrapper { flex-direction: column-reverse; }
-            .nav-menu { display: none; }
+        .btn-primary:hover {
+            transform: scale(1.05);
+            background: var(--pink-soft);
+        }
+
+        /* --- Floating Animation --- */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        .floating { animation: float 6s ease-in-out infinite; }
+
+        /* --- Intro Section --- */
+        .intro { padding: 120px 0; background: var(--pink-soft); text-align: center; }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+        .intro h2 { font-size: 2.8rem; margin-bottom: 30px; color: var(--text-dark); }
+        .intro p { font-size: 1.15rem; line-height: 1.9; color: #5a4a4d; }
+
+        /* --- About Author --- */
+        .author { padding: 100px 0; display: flex; align-items: center; gap: 60px; max-width: 1100px; margin: 0 auto; padding: 100px 20px; }
+        .author-img { flex: 1; position: relative; }
+        .author-img img { width: 100%; border-radius: 20px; box-shadow: 30px 30px 0 var(--pink-soft); }
+        .author-text { flex: 1.2; }
+        .author-text span { color: var(--pink-main); text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; }
+        .author-text h2 { font-size: 3rem; margin: 10px 0 25px; }
+
+        @media (max-width: 768px) {
+            .author { flex-direction: column; text-align: center; }
+            .author-img img { box-shadow: 15px 15px 0 var(--pink-soft); }
         }
     </style>
 </head>
 <body>
 
 <nav>
-    <div class="container nav-content">
-        <a href="#" class="logo">ВИКТОРИЯ АВЕРКИЕВА</a>
-        <ul class="nav-menu">
-            <li><a href="#about">О методе</a></li>
-            <li><a href="#for-who">Для кого</a></li>
-            <li><a href="#practice">Практика</a></li>
-            <li><a href="#contacts">Контакты</a></li>
-        </ul>
+    <div class="nav-content">
+        <a href="#" class="logo">Елена Иванова</a>
     </div>
 </nav>
 
-<section class="container hero">
-    <div class="hero-text">
-        <span>Авторская практика</span>
-        <h1>Добаюкивание: верните себе право на любовь</h1>
-        <p>Мягкая реставрация базового доверия миру через перепроживание младенческого опыта. Найдите опору, которая всегда будет с вами.</p>
-        <a href="#booking" class="btn">Записаться на практику</a>
-    </div>
-    <div class="hero-image">
-        <!-- ЗАМЕНИТЕ ЭТО ФОТО: images/main-photo.jpg -->
-        <img src="images/main-photo.jpg" alt="Виктория Аверкиева" onerror="this.src='https://images.unsplash.com/photo-1544126592-807daf21565c?auto=format&fit=crop&q=80&w=800'">
+<section class="hero">
+    <!-- ПРОВЕРЬТЕ ПУТЬ: если видео лежит в папке images, оставьте images/hero-bg.mp4 -->
+    <!-- Если видео лежит рядом с этим файлом, замените на src="hero-bg.mp4" -->
+    <video class="video-background" autoplay muted loop playsinline poster="images/main-photo.jpg">
+        <source src="images/hero-bg.mp4" type="video/mp4">
+        Ваш браузер не поддерживает видео.
+    </video>
+    <div class="video-overlay"></div>
+
+    <div class="hero-content floating">
+        <p>Авторская практика Елены Ивановой</p>
+        <h1>Добаюкивание</h1>
+        <p>Мягкое возвращение в состояние покоя и безопасности через перепроживание младенческого опыта.</p>
+        <a href="#contacts" class="btn-primary">Записаться к Елене</a>
     </div>
 </section>
 
-<div class="container">
-    <div class="stats">
-        <div class="stat-item">
-            <h3>3000+</h3>
-            <p>Участников</p>
-        </div>
-        <div class="stat-item">
-            <h3>10+</h3>
-            <p>Лет опыта</p>
-        </div>
-        <div class="stat-item">
-            <h3>100+</h3>
-            <p>Проводников</p>
-        </div>
-        <div class="stat-item">
-            <h3>10</h3>
-            <p>Стран мира</p>
-        </div>
-    </div>
-</div>
-
-<section id="about" class="about">
-    <div class="container about-wrapper">
-        <div class="about-img">
-            <!-- ЗАМЕНИТЕ ЭТО ФОТО: images/practice-1.jpg -->
-            <img src="images/practice-1.jpg" alt="О практике" onerror="this.src='https://images.unsplash.com/photo-1516589091380-5d8e87df6999?auto=format&fit=crop&q=80&w=800'">
-        </div>
-        <div class="about-text">
-            <h2>Что такое Добаюкивание?</h2>
-            <p>Это не просто терапия, это возвращение в точку «зеро» — туда, где закладывалось ваше отношение к себе и жизни. Мы работаем с внутриутробным периодом и младенчеством.</p>
-            <p>Через бережные телесные практики и глубокое погружение вы заново проживаете опыт принятия, тепла и безопасности, которого могло не хватить в детстве.</p>
-            <p><strong>Результат:</strong> исчезает фоновая тревога, появляется внутренняя «мама», которая всегда поддержит, и вы наконец разрешаете себе БЫТЬ.</p>
-        </div>
-    </div>
-</section>
-
-<section id="for-who" class="container">
-    <div class="section-header">
-        <h2>Кому это необходимо</h2>
-        <p>Если вы чувствуете, что живете в вечной борьбе или невидимой пустоте</p>
-    </div>
-    <div class="for-who-grid">
-        <div class="for-who-card">
-            <span class="icon">🤍</span>
-            <h4>Тем, кто ищет опору</h4>
-            <p>Если вы часто чувствуете себя одиноко даже среди людей и не доверяете этому миру.</p>
-        </div>
-        <div class="for-who-card">
-            <span class="icon">🫂</span>
-            <h4>Будущим мамам</h4>
-            <p>Чтобы не передавать свои травмы детям и войти в материнство из состояния избытка любви.</p>
-        </div>
-        <div class="for-who-card">
-            <span class="icon">🌿</span>
-            <h4>Для исцеления</h4>
-            <p>Если в вашем детстве было мало тепла, объятий и слов поддержки от родителей.</p>
-        </div>
-    </div>
-</section>
-
-<section style="background: var(--light-bg);">
+<section class="intro">
     <div class="container">
-        <div class="section-header">
-            <h2>Добаюкивание помогает</h2>
-        </div>
-        <div class="helps-container">
-            <div class="help-box"><h4>01</h4><p>Обрести базовое чувство безопасности</p></div>
-            <div class="help-box"><h4>02</h4><p>Исцелить отношения с мамой и папой</p></div>
-            <div class="help-box"><h4>03</h4><p>Перестать заслуживать любовь</p></div>
-            <div class="help-box"><h4>04</h4><p>Почувствовать свою ценность без условий</p></div>
-            <div class="help-box"><h4>05</h4><p>Снять телесные зажимы и блоки</p></div>
-            <div class="help-box"><h4>06</h4><p>Найти энергию для реализации в жизни</p></div>
-        </div>
+        <h2>Ощутите безусловное право на жизнь</h2>
+        <p>
+            Практика «Добаюкивание» — это не просто терапия. Это возможность для взрослого человека получить то, чего не хватило в детстве: 
+            тепла, нежности, чувства «я нужен, мне рады». В покачивающемся гамаке, под бережным присмотром Елены Ивановой, 
+            вы заново выстраиваете фундамент своего спокойствия.
+        </p>
     </div>
 </section>
 
-<section id="viktoria" class="container">
-    <div class="about-wrapper">
-        <div class="about-text">
-            <span>Автор метода</span>
-            <h2>Виктория Аверкиева</h2>
-            <p>Клинический психолог с 15-летним стажем, создательница самой известной в СНГ практики реставрации базового доверия.</p>
-            <p><i>«Моя цель — чтобы в мире стало как можно больше "добаюканных" людей. Тех, кто смотрит на жизнь не из дефицита, а из любви и спокойной уверенности в том, что им рады».</i></p>
-            <br>
-            <a href="#booking" class="btn">Записаться к Виктории</a>
-        </div>
-        <div class="about-img">
-            <!-- ЗАМЕНИТЕ ЭТО ФОТО: images/viktoria-portrait.jpg -->
-            <img src="images/viktoria-portrait.jpg" alt="Виктория Аверкиева" style="border-radius: 50% 50% 0 0;" onerror="this.src='https://images.unsplash.com/photo-1594744803329-a584af1cae24?auto=format&fit=crop&q=80&w=800'">
-        </div>
+<section class="author">
+    <div class="author-img">
+        <!-- Сюда вставьте фото Елены -->
+        <img src="images/main-photo.jpg" alt="Елена Иванова">
+    </div>
+    <div class="author-text">
+        <span>Проводник в мир доверия</span>
+        <h2>Елена Иванова</h2>
+        <p>Клинический психолог, сертифицированный мастер практики «Добаюкивание». Помогаю женщинам и мужчинам обрести внутреннюю опору и исцелить детские травмы через телесно-ориентированную терапию.</p>
+        <p style="margin-top: 20px;"><i>«Моя задача — создать для вас пространство, где вы сможете наконец-то выдохнуть и почувствовать, что мир — это безопасное место».</i></p>
     </div>
 </section>
-
-<footer id="contacts">
-    <div class="container">
-        <div class="footer-content">
-            <div>
-                <h2 style="color: white; font-family: 'Playfair Display', serif; margin-bottom: 10px;">Начните путь к себе</h2>
-                <p>Добаюкивание — это лучший подарок, который вы можете себе сделать.</p>
-            </div>
-            <div class="social-links">
-                <a href="https://vk.com/dobayuokivanie" target="_blank">ВКОНТАКТЕ</a>
-                <a href="https://instagram.com/vikaverkieva" target="_blank">INSTAGRAM</a>
-            </div>
-        </div>
-        <div style="text-align: center; font-size: 0.8rem; opacity: 0.5;">
-            <p>© 2024 Виктория Аверкиева. Свидетельство о регистрации объекта интеллектуальной собственности №3521.</p>
-        </div>
-    </div>
-</footer>
 
 </body>
 </html>
