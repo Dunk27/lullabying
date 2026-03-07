@@ -3,22 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Елена Иванова — Добаюкивание | Практика базового доверия</title>
+    <title>Елена Иванова — Добаюкивание | Реставрация базового доверия миру</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;600&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --accent: #e8a7b5; 
+            --accent-dark: #d492a0;
             --text: #3d3436;
             --white: #ffffff;
             --soft-bg: #fdf8f9;
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Manrope', sans-serif; color: var(--text); background: var(--white); line-height: 1.6; overflow-x: hidden; }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { font-family: 'Manrope', sans-serif; color: var(--text); background: var(--white); line-height: 1.7; overflow-x: hidden; }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 400; line-height: 1.2; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 25px; }
 
         /* --- Hero Section --- */
         .hero {
@@ -27,189 +33,152 @@
             display: flex;
             align-items: center;
             overflow: hidden;
-            padding: 100px 0;
+            padding: 80px 0;
         }
 
-        /* Видео на фоне */
         .hero-video {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover;
             z-index: -2;
-            filter: brightness(0.8);
+            filter: brightness(0.9);
         }
 
         .hero-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(75deg, rgba(255,255,255,0.95) 40%, rgba(255,255,255,0.2) 100%);
+            background: linear-gradient(90deg, rgba(255,255,255,0.98) 35%, rgba(255,255,255,0.3) 100%);
             z-index: -1;
         }
 
         .hero-grid {
             display: grid;
-            grid-template-columns: 1.2fr 1fr;
+            grid-template-columns: 1.3fr 1fr;
             align-items: center;
-            gap: 60px;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            gap: 40px;
         }
 
-        /* Текст слева */
-        .hero-text h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            line-height: 1.1;
-            margin-bottom: 25px;
-            color: var(--text);
-        }
+        .hero-text h1 { font-size: clamp(2.5rem, 5vw, 4.2rem); margin-bottom: 25px; color: var(--text); }
+        .hero-text p { font-size: 1.2rem; margin-bottom: 40px; max-width: 550px; font-weight: 300; color: #554a4c; }
 
-        .hero-text p {
-            font-size: 1.2rem;
-            margin-bottom: 35px;
-            max-width: 500px;
-            font-weight: 300;
-        }
-
-        /* Фото справа */
-        .hero-image-wrap {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            animation: float 6s ease-in-out infinite;
-        }
-
+        .hero-image-wrap { position: relative; display: flex; justify-content: center; animation: float 6s ease-in-out infinite; }
         .hero-image-wrap img {
             width: 100%;
-            max-width: 450px;
-            border-radius: 200px 200px 20px 20px; /* Форма арки */
-            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
-            border: 8px solid var(--white);
+            max-width: 480px;
+            border-radius: 240px 240px 30px 30px; /* Элегантная арка без рамки */
+            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
         }
 
-        /* Кнопка */
+        /* --- Buttons --- */
         .btn {
             display: inline-block;
-            padding: 22px 45px;
+            padding: 22px 50px;
             background: var(--accent);
             color: var(--white);
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 60px;
             text-transform: uppercase;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             letter-spacing: 2px;
             font-weight: 600;
-            transition: 0.4s;
+            transition: var(--transition);
         }
-        .btn:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(232, 167, 181, 0.4); }
+        .btn:hover { transform: translateY(-5px); background: var(--accent-dark); box-shadow: 0 15px 30px rgba(232, 167, 181, 0.4); }
 
-        /* --- Блок "Для кого" --- */
-        .info-section { padding: 100px 0; background: var(--soft-bg); }
-        .section-title { text-align: center; margin-bottom: 60px; font-family: 'Playfair Display', serif; font-size: 2.5rem; }
+        /* --- Problems Section --- */
+        .problems { padding: 120px 0; background: var(--soft-bg); }
+        .section-header { text-align: center; max-width: 800px; margin: 0 auto 70px; }
+        .section-header h2 { font-size: 3rem; margin-bottom: 20px; }
+        .section-header p { font-size: 1.1rem; color: #7a6b6e; font-style: italic; }
 
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        .problems-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .problem-item { background: var(--white); padding: 40px; border-radius: 25px; border-bottom: 4px solid transparent; transition: var(--transition); }
+        .problem-item:hover { border-bottom: 4px solid var(--accent); transform: translateY(-5px); }
+        .problem-item h4 { margin-bottom: 15px; font-size: 1.3rem; color: var(--accent-dark); }
+
+        /* --- Methodology (The 3 Stages) --- */
+        .method { padding: 120px 0; }
+        .steps-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; }
+        .step-card { text-align: center; }
+        .step-circle { 
+            width: 100px; height: 100px; background: var(--soft-bg); border-radius: 50%; 
+            display: flex; align-items: center; justify-content: center; 
+            margin: 0 auto 25px; font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--accent);
         }
+        .step-card h3 { margin-bottom: 15px; font-size: 1.5rem; }
 
-        .card {
-            background: var(--white);
-            padding: 40px;
-            border-radius: 20px;
-            text-align: center;
-            transition: 0.3s;
-        }
-        .card:hover { transform: translateY(-10px); }
-        .card h3 { color: var(--accent); margin-bottom: 15px; font-family: 'Playfair Display', serif; }
+        /* --- Results Section --- */
+        .results { background: var(--text); color: var(--white); padding: 100px 0; }
+        .results-list { display: grid; grid-template-columns: 1fr 1fr; gap: 30px 60px; margin-top: 50px; }
+        .result-item { display: flex; align-items: flex-start; gap: 20px; font-size: 1.1rem; border-left: 2px solid var(--accent); padding-left: 20px; }
 
-        /* Анимации */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
+        /* --- Footer --- */
+        footer { padding: 80px 0; background: var(--soft-bg); text-align: center; }
+        .footer-logo { font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 20px; display: block; }
 
-        @media (max-width: 900px) {
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+        @media (max-width: 992px) {
             .hero-grid { grid-template-columns: 1fr; text-align: center; }
-            .hero-text p { margin: 0 auto 35px; }
-            .hero-overlay { background: rgba(255,255,255,0.85); }
-            .hero-image-wrap img { max-width: 300px; }
+            .hero-text p { margin: 0 auto 40px; }
+            .steps-container, .results-list { grid-template-columns: 1fr; }
+            .hero-overlay { background: rgba(255,255,255,0.9); }
         }
     </style>
 </head>
 <body>
 
+    <!-- HERO SECTION -->
     <section class="hero">
-        <!-- Фон-видео (если не загрузится, будет белый фон) -->
         <video class="hero-video" autoplay muted loop playsinline>
             <source src="images/hero-bg.mp4" type="video/mp4">
         </video>
         <div class="hero-overlay"></div>
 
-        <div class="hero-grid">
+        <div class="container hero-grid">
             <div class="hero-text">
-                <p style="text-transform: uppercase; letter-spacing: 3px; color: var(--accent); font-weight: 600; margin-bottom: 10px;">Елена Иванова</p>
-                <h1>Добаюкивание</h1>
-                <p>Практика реставрации базового доверия миру. Верните себе состояние безопасности и безусловной любви, которое станет вашим фундаментом.</p>
-                <a href="#register" class="btn">Записаться на практику</a>
+                <p style="text-transform: uppercase; letter-spacing: 4px; color: var(--accent-dark); font-weight: 600; margin-bottom: 15px;">Елена Иванова</p>
+                <h1>Добаюкивание: верните себе право на любовь</h1>
+                <p>Авторская практика реставрации базового доверия миру через перепроживание младенческого опыта в безопасном пространстве гамака.</p>
+                <a href="#about" class="btn">Обрести внутреннюю опору</a>
             </div>
 
             <div class="hero-image-wrap">
-                <!-- Ваше фото из ссылки -->
-                <img src="https://i.ibb.co/F83G24N/image.jpg" alt="Елена Иванова — Добаюкивание">
+                <img src="https://i.ibb.co/F83G24N/image.jpg" alt="Елена Иванова — мастер практики Добаюкивание">
             </div>
         </div>
     </section>
 
-    <section class="info-section">
-        <h2 class="section-title">Кому это нужно?</h2>
-        <div class="cards-grid">
-            <div class="card">
-                <h3>Тем, кто ищет опору</h3>
-                <p>Если вы чувствуете фоновую тревогу, одиночество или недоверие к жизни.</p>
+    <!-- боли / ДЛЯ КОГО -->
+    <section class="problems">
+        <div class="container">
+            <div class="section-header">
+                <h2>Узнаете себя?</h2>
+                <p>Когда дефицит любви в детстве превращается в сложности во взрослой жизни</p>
             </div>
-            <div class="card">
-                <h3>Будущим родителям</h3>
-                <p>Чтобы войти в родительство из состояния изобилия и не передавать свои травмы детям.</p>
-            </div>
-            <div class="card">
-                <h3>Для исцеления</h3>
-                <p>Если в детстве вам не хватило тепла, объятий мамы или чувства безопасности.</p>
-            </div>
-        </div>
-    </section>
-
-    <section style="padding: 100px 0; max-width: 1000px; margin: 0 auto; padding: 100px 20px; text-align: center;">
-        <h2 class="section-title">Что такое Добаюкивание?</h2>
-        <p style="font-size: 1.2rem; color: #665a5c; margin-bottom: 30px;">
-            Это возможность для взрослого человека вернуться в точку «зеро» — в материнскую утробу и младенчество. 
-            В мягком гамаке, под голос Елены Ивановой, вы заново проживаете опыт принятия. 
-            Это не просто психология, это глубокая телесная трансформация вашего отношения с миром.
-        </p>
-        <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 50px;">
-            <div style="max-width: 250px;">
-                <span style="font-size: 3rem; color: var(--accent); font-family: 'Playfair Display';">01</span>
-                <p><strong>Утроба</strong><br>Безопасность и покой</p>
-            </div>
-            <div style="max-width: 250px;">
-                <span style="font-size: 3rem; color: var(--accent); font-family: 'Playfair Display';">02</span>
-                <p><strong>Рождение</strong><br>Мягкий выход в свет</p>
-            </div>
-            <div style="max-width: 250px;">
-                <span style="font-size: 3rem; color: var(--accent); font-family: 'Playfair Display';">03</span>
-                <p><strong>Баюканье</strong><br>Принятие и любовь</p>
+            <div class="problems-grid">
+                <div class="problem-item">
+                    <h4>Нет опоры</h4>
+                    <p>Чувствуете себя одиноко даже в толпе. Кажется, что мир — небезопасное место, где нужно всегда быть начеку.</p>
+                </div>
+                <div class="problem-item">
+                    <h4>Синдром самозванца</h4>
+                    <p>Постоянно заслуживаете любовь достижениями, но внутри всё равно ощущаете себя «недостаточно хорошим».</p>
+                </div>
+                <div class="problem-item">
+                    <h4>Сложности в отношениях</h4>
+                    <p>Трудно доверять партнеру, страх близости или, наоборот, болезненная зависимость от другого человека.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer style="background: var(--text); color: var(--white); padding: 60px 0; text-align: center;">
-        <p>© 2024 Елена Иванова — Официальный сайт практики Добаюкивание</p>
-    </footer>
-
-</body>
-</html>
+    <!-- СУТЬ МЕТОДА -->
+    <section class="method" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>Путь к новому «Я»</h2>
+                <p>Вместе с Еленой Ивановой вы пройдете путь от зачатия до первых объятий</p>
+            </div>
+            
+            <div style="max-width: 900px; margin:
