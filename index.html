@@ -1,5 +1,5 @@
 <style>
-/* Специфичные фиксы для Tilda */
+/* Базовые настройки для Тильды */
 #allrecords ul { padding: 0; margin: 0; }
 #allrecords li { list-style: none; }
 
@@ -18,71 +18,60 @@ h1,h2,h3,h4 { font-family:'Cormorant Garamond', serif; font-weight:400; line-hei
 /* NAV */
 nav { position:fixed; top:0; left:0; right:0; z-index:9999; display:flex; align-items:center; justify-content:space-between; padding:20px 60px; transition:all .4s }
 nav.scrolled { background:rgba(253,246,240,.95); backdrop-filter:blur(12px); box-shadow:0 2px 24px rgba(0,0,0,.07) }
-.nav-logo { font-family:'Cormorant Garamond', serif; font-size:1.4rem; color:#fff; text-decoration:none; display:flex; align-items:center; gap:9px; letter-spacing:.5px }
+.nav-logo { font-family:'Cormorant Garamond', serif; font-size:1.4rem; color:#fff; text-decoration:none; display:flex; align-items:center; gap:9px }
 nav.scrolled .nav-logo { color: var(--text-dark) }
 .nav-star { display:inline-block; font-size:1rem; color:#e8b4bf }
 .nav-links { display:flex; gap:36px; list-style:none }
-.nav-links a { text-decoration:none; font-size:.85rem; color:rgba(255,255,255,.85); letter-spacing:.5px; transition:color .3s }
+.nav-links a { text-decoration:none; font-size:.85rem; color:rgba(255,255,255,.85); transition:color .3s }
 nav.scrolled .nav-links a { color: var(--text-muted) }
-.nav-links a:hover { color: var(--accent) }
 
-/* HERO */
+/* HERO С ВИДЕО-ФОНОМ */
 .hero { position:relative; height:100vh; display:flex; align-items:center; overflow:hidden; background:#2a1820 }
-.hero-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.55; z-index:1 }
+.hero-video-container { position:absolute; inset:0; width:100%; height:100%; z-index:1 }
+.hero-video-container video { width:100%; height:100%; object-fit:cover; opacity:0.5 }
 .hero-overlay { position:absolute; inset:0; background:linear-gradient(135deg,rgba(90,28,45,.8) 0%,rgba(45,24,32,.55) 60%,rgba(0,0,0,.2) 100%); z-index:2 }
 .hero-content { position:relative; z-index:10; padding:0 70px; max-width:750px; animation:fadeUp 1.2s ease-out both }
+
 @keyframes fadeUp { from{opacity:0; transform:translateY(40px)} to{opacity:1; transform:translateY(0)} }
 .hero-eyebrow { font-size:.75rem; letter-spacing:4px; text-transform:uppercase; color:#e8b4bf; margin-bottom:24px; display:flex; align-items:center; gap:12px }
 .hero-eyebrow::before { content:''; width:28px; height:1px; background:#e8b4bf }
 .hero h1 { font-size:clamp(3rem, 7vw, 5rem); color:#fff; margin-bottom:26px }
 .hero h1 em { font-style:italic; color:#f5c8d0 }
-.hero-sub { color:rgba(255,255,255,.75); font-size:1.1rem; font-weight:300; line-height:1.7; margin-bottom:48px; max-width:480px }
 .btn-main { display:inline-block; padding:18px 45px; background: var(--accent); color:#fff; text-decoration:none; border-radius:50px; font-size:.9rem; font-weight:500; transition:all .3s; border:none; cursor:pointer }
-.btn-main:hover { background:#a85f6d; transform:translateY(-2px); box-shadow:0 12px 30px rgba(107,39,55,.4) }
+.btn-main:hover { background:#a85f6d; transform:translateY(-2px); box-shadow:0 12px 30px rgba(107,39,55,0.4) }
 
-/* SECTIONS */
-.section { padding:120px 0; outline:none }
+/* БЛОКИ С ВИДЕО ВМЕСТО КАРТИНКИ */
+.video-blob-wrap { 
+    width:100%; 
+    padding-bottom:100%; 
+    position:relative; 
+    border-radius:55% 45% 60% 40% / 50% 55% 45% 50%; 
+    overflow:hidden; 
+    background:#f5dde3;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+.video-blob-wrap iframe { 
+    position:absolute; 
+    top:0; left:0; width:100%; height:100%; 
+    border:none;
+}
+
+.section { padding:100px 0; }
 .wrap { max-width:1200px; margin:0 auto; padding:0 40px }
 .eyebrow { font-size:.75rem; letter-spacing:3px; text-transform:uppercase; color: var(--accent); font-weight:600; margin-bottom:16px; display:block }
 .sec-title { font-size:clamp(2.2rem, 4vw, 3.5rem); margin-bottom:25px; color: var(--text-dark) }
 
-/* ABOUT */
-.about-grid { display:grid; grid-template-columns: 1fr 1.1fr; gap:80px; align-items:center }
-.about-img-blob { width:100%; padding-bottom:110%; border-radius:55% 45% 60% 40% / 50% 55% 45% 50%; overflow:hidden; position:relative; background:#f5dde3 }
-.about-img-blob img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover }
+/* ABOUT GRID */
+.about-grid { display:grid; grid-template-columns: 1fr 1fr; gap:60px; align-items:center }
 .about-text p { color: var(--text-muted); font-size:1rem; margin-bottom:20px }
 
 /* STATS */
-.stats-row { display:flex; gap:15px; margin-top:40px; flex-wrap:wrap }
-.stat-box { padding:20px; border-radius:20px; text-align:center; flex:1; min-width:140px }
+.stats-row { display:flex; gap:15px; margin-top:30px; flex-wrap:wrap }
+.stat-box { padding:15px; border-radius:20px; text-align:center; flex:1; min-width:120px }
 .stat-box.pink { background: var(--accent); color:#fff }
 .stat-box.white { background:#fff; border:1px solid #f5dde3 }
-.stat-num { font-family:'Cormorant Garamond',serif; font-size:2.2rem; display:block }
-.stat-lbl { font-size:.75rem; opacity:.8; margin-top:5px; line-height:1.2 }
-
-/* STAGES */
-.stages-bg { background:#fff }
-.stages-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:25px; margin-top:50px }
-.stage-card { padding:40px 30px; border-radius:30px; background: var(--main-bg); transition:all .4s; position:relative; overflow:hidden }
-.stage-card:hover { background: var(--accent); transform:translateY(-10px); color:#fff }
-.stage-icon-bg { width:55px; height:55px; background:#f5dde3; border-radius:15px; display:flex; align-items:center; justify-content:center; margin-bottom:25px; font-size:1.5rem }
-.stage-card h3 { font-size:1.4rem; margin-bottom:15px }
-.stage-card p { font-size:.9rem; line-height:1.7 }
-
-/* PAINS */
-.pains-grid { display:grid; grid-template-columns: 1.2fr 1fr; gap:70px; align-items:center }
-.pains-cards { display:grid; grid-template-columns: 1fr 1fr; gap:20px }
-.pain-card { padding:25px; background:#fff; border-radius:20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03) }
-.pain-card h4 { font-size:1.2rem; margin-bottom:10px; color: var(--accent) }
-.pains-img-blob { width:100%; padding-bottom:120%; border-radius:45% 55% 50% 50% / 55% 45% 55% 45%; overflow:hidden; position:relative; background:#f5dde3 }
-.pains-img-blob img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover }
-
-/* SPECIALIST */
-.spec-bg { background:#fff }
-.spec-grid { display:grid; grid-template-columns: 1fr 1.3fr; gap:80px; align-items:center }
-.spec-img-blob { width:100%; padding-bottom:130%; border-radius:50%; overflow:hidden; position:relative }
-.spec-img-blob img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover }
-blockquote { border-left:4px solid var(--accent); padding:20px 30px; background: var(--main-bg); border-radius:0 20px 20px 0; margin:30px 0; font-family:'Cormorant Garamond', serif; font-style:italic; font-size:1.2rem }
+.stat-num { font-family:'Cormorant Garamond',serif; font-size:2rem; display:block }
+.stat-lbl { font-size:.7rem; opacity:0.8; line-height:1.2 }
 
 /* REVEAL ANIMATION */
 .reveal { opacity:0; transform:translateY(30px); transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1) }
@@ -91,9 +80,7 @@ blockquote { border-left:4px solid var(--accent); padding:20px 30px; background:
 @media(max-width:960px){
   nav { padding:15px 25px }
   .nav-links { display:none }
-  .wrap { padding:0 25px }
-  .about-grid, .pains-grid, .spec-grid { grid-template-columns: 1fr; gap:50px }
-  .about-img-wrap { order:-1 }
+  .about-grid { grid-template-columns: 1fr; gap:40px }
   .hero-content { padding:0 25px }
 }
 </style>
@@ -105,146 +92,31 @@ blockquote { border-left:4px solid var(--accent); padding:20px 30px; background:
   <ul class="nav-links">
     <li><a href="#about">О практике</a></li>
     <li><a href="#stages">Метод</a></li>
-    <li><a href="#pains">Для кого</a></li>
     <li><a href="#specialist">Елена</a></li>
     <li><a href="#register">Записаться</a></li>
   </ul>
 </nav>
 
+<!-- HERO SECTION -->
 <section class="hero">
-  <!-- Вставьте ссылку на видео вместо '#' -->
-  <video class="hero-video" autoplay muted loop playsinline>
-    <source src="#" type="video/mp4">
-  </video>
+  <div class="hero-video-container">
+    <!-- ЗАМЕНИТЕ '#' НА ПРЯМУЮ ССЫЛКУ НА .MP4 ФАЙЛ ДЛЯ ФОНА -->
+    <video autoplay muted loop playsinline poster="https://static.tildacdn.com/62333334-3131-4131-b035-373336303233/-/resize/20x/center.jpg">
+      <source src="https://your-video-link.mp4" type="video/mp4">
+    </video>
+  </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-eyebrow">Елена Иванова</div>
     <h1>Добаюкивание<br><em>вашей души</em></h1>
-    <p class="hero-sub">Практика реставрации базового доверия миру. Исцеление вашего внутреннего ребёнка через нежность и безусловное принятие.</p>
     <a href="#register" class="btn-main">Записаться на сессию</a>
   </div>
 </section>
 
+<!-- SECTION ABOUT С ПЕРВЫМ ВИДЕО (456242000) -->
 <section class="section" id="about">
   <div class="wrap">
     <div class="about-grid">
-      <div class="about-img-wrap reveal">
-        <div class="about-img-blob">
-          <img src="ССЫЛКА_НА_ФОТО_ЕЛЕНЫ_1" alt="Елена Иванова">
-        </div>
-      </div>
-      <div class="about-text">
-        <span class="eyebrow reveal">О практике</span>
-        <h2 class="sec-title reveal">Добро пожаловать<br>в <em>Добаюкивание</em></h2>
-        <p class="reveal">Добаюкивание — это телесно-ориентированная практика, созданная для того, чтобы взрослый человек смог вернуться в точку своего начала.</p>
-        <p class="reveal">В мягком покачивании, имитирующем материнскую утробу, вы заново проживаете ключевые этапы формирования вашей психики. Это возможность получить тот опыт безусловной любви, которого не хватило в детстве.</p>
-        <div class="stats-row reveal">
-          <div class="stat-box pink"><span class="stat-num">4+</span><span class="stat-lbl">года мастер практики</span></div>
-          <div class="stat-box white"><span class="stat-num">2000+</span><span class="stat-lbl">добаюканных</span></div>
-          <div class="stat-box white"><span class="stat-num">13+</span><span class="stat-lbl">лет в психологии</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section stages-bg" id="stages">
-  <div class="wrap">
-    <div style="text-align:center; margin-bottom:50px">
-      <span class="eyebrow">✦ Метод ✦</span>
-      <h2 class="sec-title">Три этапа реставрации</h2>
-    </div>
-    <div class="stages-grid">
-      <div class="stage-card reveal">
-        <div class="stage-icon-bg">🌙</div>
-        <h3>Утроба</h3>
-        <p>Состояние полной безопасности, тишины и тепла. Время, когда вы просто есть, и этого уже достаточно.</p>
-      </div>
-      <div class="stage-card reveal" style="transition-delay:0.1s">
-        <div class="stage-icon-bg">🌱</div>
-        <h3>Рождение</h3>
-        <p>Перепроживание момента выхода в мир. Мягкое появление там, где вас ждут и рады.</p>
-      </div>
-      <div class="stage-card reveal" style="transition-delay:0.2s">
-        <div class="stage-icon-bg">🌸</div>
-        <h3>Баюканье</h3>
-        <p>Первые объятия, колыбельные и слова принятия, которые формируют вашу внутреннюю опору.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="pains">
-  <div class="wrap">
-    <div class="pains-grid">
-      <div class="pains-text">
-        <span class="eyebrow reveal">✦ Для кого ✦</span>
-        <h2 class="sec-title reveal">Кому это необходимо?</h2>
-        <div class="pains-cards">
-          <div class="pain-card reveal"><h4>Одиночество</h4><p>Когда даже среди людей вы ощущаете себя «отдельным», ненужным или непонятым.</p></div>
-          <div class="pain-card reveal"><h4>Тревога</h4><p>Ожидание подвоха от жизни, неумение расслабиться и довериться.</p></div>
-        </div>
-      </div>
-      <div class="pains-img-wrap reveal">
-        <div class="pains-img-blob">
-          <img src="ССЫЛКА_НА_ФОТО_ПАРЫ_ИЛИ_ПРОЦЕССА" alt="Добаюкивание">
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section spec-bg" id="specialist">
-  <div class="wrap">
-    <div class="spec-grid">
-      <div class="spec-img-wrap reveal">
-        <div class="spec-img-blob">
-          <img src="ССЫЛКА_НА_ФОТО_ЕЛЕНЫ_2" alt="Елена Иванова">
-        </div>
-      </div>
-      <div class="spec-text">
-        <span class="eyebrow reveal">✦ Ваш проводник ✦</span>
-        <h2 class="sec-title reveal">Елена Иванова</h2>
-        <p class="reveal">Мастер практики «Добаюкивание», специалист по работе с глубинными детскими дефицитами.</p>
-        <blockquote class="reveal">
-          «Моя роль — стать для вас теми бережными руками и тем принимающим сердцем, которые помогут вашему внутреннему ребёнку наконец-то расслабиться».
-        </blockquote>
-        <div id="register" class="reveal" style="margin-top:40px">
-          <a href="https://t.me/ВАШ_НИК" class="btn-main">Написать в Telegram</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const nav = document.getElementById('nav-custom');
-  
-  // Эффект при скролле для навигации
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
-  });
-
-  // Анимация появления блоков
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if(e.isIntersecting) e.target.classList.add('on');
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  
-  // Вращение звездочки в логотипе
-  let angle = 0;
-  const star = document.querySelector('.nav-star');
-  setInterval(() => { 
-    angle += 1; 
-    star.style.transform = `rotate(${angle}deg)`; 
-  }, 50);
-});
-</script>
+      <div class="reveal">
+        <div class="video-blob-wrap">
+          <iframe src="https://vk.com/video_ext.php?oid=209190811&id=456242000&hd
