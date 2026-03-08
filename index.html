@@ -1,122 +1,183 @@
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
 <style>
-/* Базовые настройки для Тильды */
-#allrecords ul { padding: 0; margin: 0; }
-#allrecords li { list-style: none; }
-
+/* ОБЩИЕ СТИЛИ */
 :root {
-  --main-bg: #fdf6f0;
-  --accent: #c97d8a;
-  --text-dark: #2d1f23;
-  --text-muted: #8a7070;
+    --accent: #c97d8a;
+    --bg-soft: #fdf6f0;
+    --text-main: #2d1f23;
+    --text-light: #8a7070;
 }
 
-* { margin:0; padding:0; box-sizing:border-box }
-html { scroll-behavior:smooth }
-body { font-family:'DM Sans', Arial, sans-serif; background: var(--main-bg); color: var(--text-dark); overflow-x:hidden; line-height:1.6 }
-h1,h2,h3,h4 { font-family:'Cormorant Garamond', serif; font-weight:400; line-height:1.1 }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'DM Sans', sans-serif; background: var(--bg-soft); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+h1, h2, h3 { font-family:'Cormorant Garamond', serif; font-weight: 400; }
 
-/* NAV */
-nav { position:fixed; top:0; left:0; right:0; z-index:9999; display:flex; align-items:center; justify-content:space-between; padding:20px 60px; transition:all .4s }
-nav.scrolled { background:rgba(253,246,240,.95); backdrop-filter:blur(12px); box-shadow:0 2px 24px rgba(0,0,0,.07) }
-.nav-logo { font-family:'Cormorant Garamond', serif; font-size:1.4rem; color:#fff; text-decoration:none; display:flex; align-items:center; gap:9px }
-nav.scrolled .nav-logo { color: var(--text-dark) }
-.nav-star { display:inline-block; font-size:1rem; color:#e8b4bf }
-.nav-links { display:flex; gap:36px; list-style:none }
-.nav-links a { text-decoration:none; font-size:.85rem; color:rgba(255,255,255,.85); transition:color .3s }
-nav.scrolled .nav-links a { color: var(--text-muted) }
+/* НАВИГАЦИЯ */
+nav { position:fixed; top:0; left:0; right:0; z-index:9999; display:flex; align-items:center; justify-content:space-between; padding:20px 60px; transition: .4s; }
+nav.scrolled { background:rgba(253,246,240,.95); backdrop-filter:blur(10px); box-shadow:0 2px 20px rgba(0,0,0,0.05); }
+.nav-logo { font-family:'Cormorant Garamond', serif; font-size:1.3rem; color:#fff; text-decoration:none; display:flex; align-items:center; gap:8px; }
+nav.scrolled .nav-logo { color: var(--text-main); }
+.nav-links { display:flex; gap:30px; list-style:none; }
+.nav-links a { text-decoration:none; color:rgba(255,255,255,0.9); font-size:0.85rem; transition: .3s; }
+nav.scrolled .nav-links a { color: var(--text-light); }
+.nav-links a:hover { color: var(--accent) !important; }
 
-/* HERO С ВИДЕО-ФОНОМ */
-.hero { position:relative; height:100vh; display:flex; align-items:center; overflow:hidden; background:#2a1820 }
-.hero-video-container { position:absolute; inset:0; width:100%; height:100%; z-index:1 }
-.hero-video-container video { width:100%; height:100%; object-fit:cover; opacity:0.5 }
-.hero-overlay { position:absolute; inset:0; background:linear-gradient(135deg,rgba(90,28,45,.8) 0%,rgba(45,24,32,.55) 60%,rgba(0,0,0,.2) 100%); z-index:2 }
-.hero-content { position:relative; z-index:10; padding:0 70px; max-width:750px; animation:fadeUp 1.2s ease-out both }
+/* HERO (ГЛАВНЫЙ ЭКРАН) */
+.hero { position:relative; height:100vh; display:flex; align-items:center; overflow:hidden; background:#2a1820; }
+.hero-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.5; z-index:1; }
+.hero-overlay { position:absolute; inset:0; background:linear-gradient(135deg, rgba(45,24,32,0.8) 0%, rgba(0,0,0,0.3) 100%); z-index:2; }
+.hero-content { position:relative; z-index:10; padding:0 60px; max-width:800px; animation: fadeInUp 1.2s ease; }
 
-@keyframes fadeUp { from{opacity:0; transform:translateY(40px)} to{opacity:1; transform:translateY(0)} }
-.hero-eyebrow { font-size:.75rem; letter-spacing:4px; text-transform:uppercase; color:#e8b4bf; margin-bottom:24px; display:flex; align-items:center; gap:12px }
-.hero-eyebrow::before { content:''; width:28px; height:1px; background:#e8b4bf }
-.hero h1 { font-size:clamp(3rem, 7vw, 5rem); color:#fff; margin-bottom:26px }
-.hero h1 em { font-style:italic; color:#f5c8d0 }
-.btn-main { display:inline-block; padding:18px 45px; background: var(--accent); color:#fff; text-decoration:none; border-radius:50px; font-size:.9rem; font-weight:500; transition:all .3s; border:none; cursor:pointer }
-.btn-main:hover { background:#a85f6d; transform:translateY(-2px); box-shadow:0 12px 30px rgba(107,39,55,0.4) }
+.btn-main { display:inline-block; padding:16px 40px; background: var(--accent); color:#fff; text-decoration:none; border-radius:50px; font-weight:500; transition:.3s; border:none; cursor:pointer; }
+.btn-main:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(201,125,138,0.3); }
 
-/* БЛОКИ С ВИДЕО ВМЕСТО КАРТИНКИ */
-.video-blob-wrap { 
-    width:100%; 
-    padding-bottom:100%; 
-    position:relative; 
-    border-radius:55% 45% 60% 40% / 50% 55% 45% 50%; 
-    overflow:hidden; 
-    background:#f5dde3;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-}
-.video-blob-wrap iframe { 
-    position:absolute; 
-    top:0; left:0; width:100%; height:100%; 
-    border:none;
-}
+/* ФОРМЫ-ОБЛАКА ДЛЯ ВИДЕО */
+.blob-container { position:relative; width:100%; padding-bottom:110%; border-radius:55% 45% 60% 40% / 50% 55% 45% 50%; overflow:hidden; background:#f5dde3; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+.blob-container iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:none; object-fit: cover; }
 
+/* СЕКЦИИ */
 .section { padding:100px 0; }
-.wrap { max-width:1200px; margin:0 auto; padding:0 40px }
-.eyebrow { font-size:.75rem; letter-spacing:3px; text-transform:uppercase; color: var(--accent); font-weight:600; margin-bottom:16px; display:block }
-.sec-title { font-size:clamp(2.2rem, 4vw, 3.5rem); margin-bottom:25px; color: var(--text-dark) }
+.wrap { max-width:1200px; margin:0 auto; padding:0 40px; }
+.grid-2 { display:grid; grid-template-columns: 1fr 1fr; gap:80px; align-items:center; }
+.eyebrow { font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color: var(--accent); display:block; margin-bottom:15px; }
+.sec-title { font-size:clamp(2.5rem, 5vw, 3.5rem); margin-bottom:25px; line-height:1.1; }
 
-/* ABOUT GRID */
-.about-grid { display:grid; grid-template-columns: 1fr 1fr; gap:60px; align-items:center }
-.about-text p { color: var(--text-muted); font-size:1rem; margin-bottom:20px }
+/* КАРТОЧКИ ЭТАПОВ */
+.stages-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:20px; margin-top:50px; }
+.stage-card { background:#fff; padding:40px 30px; border-radius:30px; transition:.4s; border: 1px solid #f5dde3; }
+.stage-card:hover { background: var(--accent); color:#fff; transform: translateY(-10px); }
+.stage-card h3 { font-size:1.5rem; margin-bottom:15px; }
 
-/* STATS */
-.stats-row { display:flex; gap:15px; margin-top:30px; flex-wrap:wrap }
-.stat-box { padding:15px; border-radius:20px; text-align:center; flex:1; min-width:120px }
-.stat-box.pink { background: var(--accent); color:#fff }
-.stat-box.white { background:#fff; border:1px solid #f5dde3 }
-.stat-num { font-family:'Cormorant Garamond',serif; font-size:2rem; display:block }
-.stat-lbl { font-size:.7rem; opacity:0.8; line-height:1.2 }
+/* АНИМАЦИЯ ПОЯВЛЕНИЯ */
+.reveal { opacity:0; transform:translateY(30px); transition: 0.8s ease-out; }
+.reveal.on { opacity:1; transform:translateY(0); }
 
-/* REVEAL ANIMATION */
-.reveal { opacity:0; transform:translateY(30px); transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1) }
-.reveal.on { opacity:1; transform:translateY(0) }
+@keyframes fadeInUp { from { opacity:0; transform:translateY(40px); } to { opacity:1; transform:translateY(0); } }
 
-@media(max-width:960px){
-  nav { padding:15px 25px }
-  .nav-links { display:none }
-  .about-grid { grid-template-columns: 1fr; gap:40px }
-  .hero-content { padding:0 25px }
+@media(max-width:960px) {
+    .grid-2 { grid-template-columns: 1fr; gap:50px; }
+    .nav-links { display:none; }
+    .stages-grid { grid-template-columns: 1fr; }
+    .hero-content { padding: 0 30px; text-align: center; }
 }
 </style>
 
-<nav id="nav-custom">
-  <a href="#" class="nav-logo">
-    <span class="nav-star">✦</span> Добаюкивание
-  </a>
-  <ul class="nav-links">
-    <li><a href="#about">О практике</a></li>
-    <li><a href="#stages">Метод</a></li>
-    <li><a href="#specialist">Елена</a></li>
-    <li><a href="#register">Записаться</a></li>
-  </ul>
+<!-- НАВИГАЦИЯ -->
+<nav id="navbar">
+    <a href="#" class="nav-logo">✦ Добаюкивание</a>
+    <ul class="nav-links">
+        <li><a href="#about">О практике</a></li>
+        <li><a href="#stages">Метод</a></li>
+        <li><a href="#specialist">Елена</a></li>
+        <li><a href="#register">Записаться</a></li>
+    </ul>
 </nav>
 
-<!-- HERO SECTION -->
+<!-- HERO С ФОНОВЫМ ВИДЕО -->
 <section class="hero">
-  <div class="hero-video-container">
-    <!-- ЗАМЕНИТЕ '#' НА ПРЯМУЮ ССЫЛКУ НА .MP4 ФАЙЛ ДЛЯ ФОНА -->
-    <video autoplay muted loop playsinline poster="https://static.tildacdn.com/62333334-3131-4131-b035-373336303233/-/resize/20x/center.jpg">
-      <source src="https://your-video-link.mp4" type="video/mp4">
+    <video class="hero-video" autoplay muted loop playsinline>
+        <source src="ССЫЛКА_НА_ВАШ_ФАЙЛ_HERO_BG.mp4" type="video/mp4">
     </video>
-  </div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">Елена Иванова</div>
-    <h1>Добаюкивание<br><em>вашей души</em></h1>
-    <a href="#register" class="btn-main">Записаться на сессию</a>
-  </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <span class="eyebrow" style="color:#e8b4bf">Елена Иванова</span>
+        <h1 style="color:#fff; margin-bottom:30px;">Добаюкивание<br><em>вашей души</em></h1>
+        <a href="#register" class="btn-main">Записаться на практику</a>
+    </div>
 </section>
 
-<!-- SECTION ABOUT С ПЕРВЫМ ВИДЕО (456242000) -->
+<!-- О ПРАКТИКЕ + ВИДЕО 1 -->
 <section class="section" id="about">
-  <div class="wrap">
-    <div class="about-grid">
-      <div class="reveal">
-        <div class="video-blob-wrap">
-          <iframe src="https://vk.com/video_ext.php?oid=209190811&id=456242000&hd
+    <div class="wrap">
+        <div class="grid-2">
+            <div class="reveal">
+                <div class="blob-container">
+                    <!-- Видео про добаюкивание -->
+                    <iframe src="https://vk.com/video_ext.php?oid=209190811&id=456242000&hd=2&autoplay=0" allow="autoplay; encrypted-media; fullscreen; picture-in-picture;" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="reveal" style="transition-delay: 0.2s">
+                <span class="eyebrow">О методе</span>
+                <h2 class="sec-title">Исцеление вашего <em>внутреннего ребенка</em></h2>
+                <p style="color:var(--text-light); margin-bottom:20px;">Добаюкивание — это глубокая телесная практика восстановления базового доверия к миру. Мы возвращаемся в те моменты, где не хватило тепла, чтобы перепрожить их в любви и безопасности.</p>
+                <p style="color:var(--text-light);">Через бережные руки мастера и состояние «утробы» вы обретаете новую опору внутри себя.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ЭТАПЫ (БЕЗ КНОПОК) -->
+<section class="section" style="background:#fff;" id="stages">
+    <div class="wrap">
+        <div style="text-align:center; max-width:600px; margin:0 auto 50px;">
+            <span class="eyebrow">Три шага</span>
+            <h2 class="sec-title">Как проходит процесс</h2>
+        </div>
+        <div class="stages-grid">
+            <div class="stage-card reveal">
+                <h3>01. Утроба</h3>
+                <p>Погружение в состояние полной тишины и безопасности. Момент, когда мир еще не требует ничего, кроме вашего существования.</p>
+            </div>
+            <div class="stage-card reveal" style="transition-delay:0.2s">
+                <h3>02. Рождение</h3>
+                <p>Перепроживание момента выхода в жизнь. Мягкий переход в пространство, где вас очень сильно ждут.</p>
+            </div>
+            <div class="stage-card reveal" style="transition-delay:0.4s">
+                <h3>03. Баюканье</h3>
+                <p>Опыт безусловного принятия. Те самые слова и объятия, которые исцеляют дефициты прошлого.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- СПЕЦИАЛИСТ + ВИДЕО 2 -->
+<section class="section" id="specialist">
+    <div class="wrap">
+        <div class="grid-2">
+            <div class="reveal">
+                <span class="eyebrow">Ваш проводник</span>
+                <h2 class="sec-title">Елена Иванова</h2>
+                <p style="color:var(--text-light); margin-bottom:20px;">Психолог, сертифицированный мастер практики «Добаюкивание». Более 7 лет я помогаю женщинам и мужчинам обретать внутренний дом.</p>
+                <div style="background: #fff; padding: 25px; border-radius: 20px; border-left: 4px solid var(--accent); font-style: italic;">
+                    «Моя задача — стать для вас тем самым бережным зеркалом, в котором вы увидите свою ценность».
+                </div>
+            </div>
+            <div class="reveal" style="transition-delay: 0.2s">
+                <div class="blob-container" style="border-radius: 40% 60% 40% 60% / 60% 40% 60% 40%;">
+                    <!-- Видео-визитка Елены -->
+                    <iframe src="https://vk.com/video_ext.php?oid=209190811&id=456241981&hd=2&autoplay=0" allow="autoplay; encrypted-media; fullscreen; picture-in-picture;" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ФУТЕР / КНОПКА ЗАПИСИ -->
+<section class="section" id="register" style="text-align:center; background: var(--accent); color:#fff;">
+    <div class="wrap reveal">
+        <h2 class="sec-title" style="color:#fff;">Готовы пойти в глубину?</h2>
+        <p style="margin-bottom:40px; opacity:0.9;">Выберите удобное время для предварительной консультации</p>
+        <a href="https://t.me/ВАШ_НИК" class="btn-main" style="background:#fff; color:var(--accent);">Написать в Telegram</a>
+    </div>
+</section>
+
+<script>
+// Смена фона меню при скролле
+window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (window.scrollY > 50) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+});
+
+// Анимация при скролле (Intersection Observer)
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('on');
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
