@@ -172,7 +172,9 @@ footer{background:#2d1f23;color:rgba(255,255,255,.7);padding:70px 0 36px}
 <!-- HERO -->
 <section class="hero">
   <div class="hero-iframe-wrap">
-    <iframe src="https://vkvideo.ru/clip_ext.php?oid=-44695343&id=456239029&autoplay=1" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" allowfullscreen></iframe>
+    <video autoplay muted loop playsinline style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);min-width:100%;min-height:100%;width:auto;height:auto;object-fit:cover;border:0;">
+      <source src="images/hero-bg.mp4" type="video/mp4">
+    </video>
   </div>
   <canvas class="hero-canvas" id="heroCanvas"></canvas>
   <div class="hero-overlay"></div>
@@ -323,82 +325,52 @@ footer{background:#2d1f23;color:rgba(255,255,255,.7);padding:70px 0 36px}
       <div class="reviews-track" id="reviewsTrack">
 
         <div class="review-card">
-          <div class="review-video-wrap">
-            <iframe src="https://vkvideo.ru/video_ext.php?oid=-44695343&id=456239030&hash=8b419cf6c57d975f&hd=3" style="position:absolute;inset:0;width:100%;height:100%;border:0;" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" allowfullscreen></iframe>
+          <div class="review-video-wrap" data-src="https://vkvideo.ru/video_ext.php?oid=-44695343&id=456239030&hash=8b419cf6c57d975f&hd=3">
+            <div class="rv-preview"><div class="rv-play"><svg width="22" height="26" viewBox="0 0 22 26" fill="white"><path d="M0 0l22 13L0 26V0z"/></svg></div></div>
           </div>
           <div class="review-body">
             <p class="review-text">«После первого сеанса я почувствовала, как что-то внутри наконец-то отпустило. Было ощущение, что меня держат на руках — безопасно и тепло.»</p>
-            <div class="review-author">
-              <div class="review-avatar">М</div>
-              <div>
-                <strong>Мария, 34 года</strong>
-                <span>Менеджер, Москва</span>
-              </div>
-            </div>
+            <div class="review-author"><div class="review-avatar">М</div><div><strong>Мария, 34 года</strong><span>Менеджер, Москва</span></div></div>
           </div>
         </div>
 
         <div class="review-card">
-          <div class="review-video-wrap">
-            <iframe src="https://vkvideo.ru/clip_ext.php?oid=-44695343&id=456239032&autoplay=1" style="position:absolute;inset:0;width:100%;height:100%;border:0;" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" allowfullscreen></iframe>
+          <div class="review-video-wrap" data-src="https://vkvideo.ru/clip_ext.php?oid=-44695343&id=456239032">
+            <div class="rv-preview"><div class="rv-play"><svg width="22" height="26" viewBox="0 0 22 26" fill="white"><path d="M0 0l22 13L0 26V0z"/></svg></div></div>
           </div>
           <div class="review-body">
             <p class="review-text">«Я не верила, что взрослый человек может так глубоко расслабиться. Три сессии — и хроническая тревога стала фоновой, а не всепоглощающей.»</p>
-            <div class="review-author">
-              <div class="review-avatar">А</div>
-              <div>
-                <strong>Анна, 29 лет</strong>
-                <span>Психолог, Санкт-Петербург</span>
-              </div>
-            </div>
+            <div class="review-author"><div class="review-avatar">А</div><div><strong>Анна, 29 лет</strong><span>Психолог, Санкт-Петербург</span></div></div>
           </div>
         </div>
 
         <div class="review-card">
-          <div class="review-video-wrap">
-            <iframe src="https://vkvideo.ru/video_ext.php?oid=-44695343&id=456239031&hash=0045c0dc01c0b01d&hd=3" style="position:absolute;inset:0;width:100%;height:100%;border:0;" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" allowfullscreen></iframe>
+          <div class="review-video-wrap" data-src="https://vkvideo.ru/video_ext.php?oid=-44695343&id=456239031&hash=0045c0dc01c0b01d&hd=3">
+            <div class="rv-preview"><div class="rv-play"><svg width="22" height="26" viewBox="0 0 22 26" fill="white"><path d="M0 0l22 13L0 26V0z"/></svg></div></div>
           </div>
           <div class="review-body">
             <p class="review-text">«Елена создаёт пространство абсолютного принятия. После добаюкивания я впервые почувствовала, что имею право просто быть — без доказательств и заслуг.»</p>
-            <div class="review-author">
-              <div class="review-avatar">О</div>
-              <div>
-                <strong>Ольга, 41 год</strong>
-                <span>Предприниматель, Екатеринбург</span>
-              </div>
-            </div>
+            <div class="review-author"><div class="review-avatar">О</div><div><strong>Ольга, 41 год</strong><span>Предприниматель, Екатеринбург</span></div></div>
           </div>
         </div>
 
         <div class="review-card">
-          <div class="review-video-wrap">
-            <iframe src="https://vkvideo.ru/clip_ext.php?oid=-44695343&id=456239033&autoplay=1" style="position:absolute;inset:0;width:100%;height:100%;border:0;" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" allowfullscreen></iframe>
+          <div class="review-video-wrap" data-src="https://vkvideo.ru/clip_ext.php?oid=-44695343&id=456239033">
+            <div class="rv-preview"><div class="rv-play"><svg width="22" height="26" viewBox="0 0 22 26" fill="white"><path d="M0 0l22 13L0 26V0z"/></svg></div></div>
           </div>
           <div class="review-body">
             <p class="review-text">«Я скептически относилась к телесным практикам. Но уже на второй сессии расплакалась — и это были слёзы облегчения. Что-то глубокое встало на место.»</p>
-            <div class="review-author">
-              <div class="review-avatar">Е</div>
-              <div>
-                <strong>Екатерина, 36 лет</strong>
-                <span>Врач, Казань</span>
-              </div>
-            </div>
+            <div class="review-author"><div class="review-avatar">Е</div><div><strong>Екатерина, 36 лет</strong><span>Врач, Казань</span></div></div>
           </div>
         </div>
 
         <div class="review-card">
-          <div class="review-video-wrap">
-            <iframe src="https://vkvideo.ru/clip_ext.php?oid=-44695343&id=456239034&autoplay=1" style="position:absolute;inset:0;width:100%;height:100%;border:0;" allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;" allowfullscreen></iframe>
+          <div class="review-video-wrap" data-src="https://vkvideo.ru/clip_ext.php?oid=-44695343&id=456239034">
+            <div class="rv-preview"><div class="rv-play"><svg width="22" height="26" viewBox="0 0 22 26" fill="white"><path d="M0 0l22 13L0 26V0z"/></svg></div></div>
           </div>
           <div class="review-body">
             <p class="review-text">«Это был опыт, которого мне не хватало всю жизнь. Я наконец почувствовала себя в безопасности — внутри самой себя.»</p>
-            <div class="review-author">
-              <div class="review-avatar">Н</div>
-              <div>
-                <strong>Наталья, 38 лет</strong>
-                <span>Психолог, Новосибирск</span>
-              </div>
-            </div>
+            <div class="review-author"><div class="review-avatar">Н</div><div><strong>Наталья, 38 лет</strong><span>Психолог, Новосибирск</span></div></div>
           </div>
         </div>
 
@@ -418,13 +390,14 @@ footer{background:#2d1f23;color:rgba(255,255,255,.7);padding:70px 0 36px}
 </section>
 
 <style>
-.reviews-carousel{position:relative;overflow:hidden}
+.reviews-carousel{position:relative}
 .reviews-track{display:flex;gap:28px;transition:transform .6s cubic-bezier(.16,1,.3,1)}
 .review-card{min-width:calc(33.333% - 19px);background:#fff;border-radius:28px;overflow:hidden;box-shadow:0 4px 28px rgba(201,125,138,.1);flex-shrink:0}
-.review-video-wrap{width:100%;aspect-ratio:16/9;background:#1a0d12;position:relative;overflow:hidden}
-.review-video-wrap video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.review-video-wrap iframe{position:absolute;top:-8%;left:-2%;width:104%;height:116%;border:0;}
-.review-video-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;height:100%;color:#c97d8a;font-size:.8rem;letter-spacing:1px}
+.review-video-wrap{width:100%;aspect-ratio:16/9;background:#2a1820;position:relative;overflow:hidden;cursor:pointer}
+.rv-preview{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#3d1825,#1a0d12);transition:opacity .3s}
+.rv-play{width:64px;height:64px;border-radius:50%;background:rgba(201,125,138,.85);display:flex;align-items:center;justify-content:center;transition:transform .3s,background .3s}
+.review-video-wrap:hover .rv-play{transform:scale(1.1);background:#c97d8a}
+.review-video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
 .review-body{padding:28px 26px 30px}
 .review-text{font-size:.92rem;line-height:1.8;color:#5a4a4e;font-style:italic;margin-bottom:22px}
 .review-author{display:flex;align-items:center;gap:14px}
@@ -443,10 +416,29 @@ footer{background:#2d1f23;color:rgba(255,255,255,.7);padding:70px 0 36px}
 
 <script>
 (function(){
-  const track = document.getElementById('reviewsTrack');
-  const dotsEl = document.getElementById('revDots');
-  const cards = track ? track.querySelectorAll('.review-card') : [];
-  let cur = 0;
+  // Click-to-play
+  document.querySelectorAll('.review-video-wrap').forEach(function(wrap){
+    wrap.addEventListener('click', function(){
+      var preview = wrap.querySelector('.rv-preview');
+      if(preview && preview.style.display !== 'none'){
+        var src = wrap.getAttribute('data-src');
+        if(!src) return;
+        preview.style.display = 'none';
+        var iframe = document.createElement('iframe');
+        iframe.src = src + (src.indexOf('?') > -1 ? '&' : '?') + 'autoplay=1';
+        iframe.allow = 'autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;';
+        iframe.allowFullscreen = true;
+        iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0;';
+        wrap.appendChild(iframe);
+      }
+    });
+  });
+
+  // Carousel
+  var track = document.getElementById('reviewsTrack');
+  var dotsEl = document.getElementById('revDots');
+  var cards = track ? Array.from(track.querySelectorAll('.review-card')) : [];
+  var cur = 0;
 
   function getVisible(){
     if(window.innerWidth <= 600) return 1;
@@ -457,33 +449,35 @@ footer{background:#2d1f23;color:rgba(255,255,255,.7);padding:70px 0 36px}
   function buildDots(){
     if(!dotsEl) return;
     dotsEl.innerHTML = '';
-    const total = Math.ceil(cards.length / getVisible());
-    for(let i=0;i<total;i++){
-      const d = document.createElement('div');
-      d.className = 'rev-dot' + (i===cur?' active':'');
-      d.onclick = ()=>{ cur=i; update(); };
-      dotsEl.appendChild(d);
+    var total = Math.ceil(cards.length / getVisible());
+    for(var i=0;i<total;i++){
+      (function(idx){
+        var d = document.createElement('div');
+        d.className = 'rev-dot' + (idx===cur?' active':'');
+        d.onclick = function(){ cur=idx; update(); };
+        dotsEl.appendChild(d);
+      })(i);
     }
   }
 
   function update(){
-    if(!track) return;
-    const vis = getVisible();
-    const maxCur = Math.max(0, Math.ceil(cards.length/vis)-1);
+    if(!track || !cards.length) return;
+    var vis = getVisible();
+    var maxCur = Math.max(0, Math.ceil(cards.length/vis)-1);
     if(cur > maxCur) cur = maxCur;
-    const cardW = cards[0] ? cards[0].offsetWidth + 28 : 0;
+    var cardW = cards[0].offsetWidth + 28;
     track.style.transform = 'translateX(-'+(cur * vis * cardW)+'px)';
     buildDots();
   }
 
   window.shiftReviews = function(dir){
-    const vis = getVisible();
-    const maxCur = Math.max(0, Math.ceil(cards.length/vis)-1);
+    var vis = getVisible();
+    var maxCur = Math.max(0, Math.ceil(cards.length/vis)-1);
     cur = Math.min(maxCur, Math.max(0, cur+dir));
     update();
   };
 
-  window.addEventListener('resize', ()=>{ cur=0; update(); });
+  window.addEventListener('resize', function(){ cur=0; update(); });
   buildDots();
   update();
 })();
