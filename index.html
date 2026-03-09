@@ -439,6 +439,11 @@ footer{background:#2d1f23;color:rgba(255,255,255,.7);padding:70px 0 36px}
 .rv-overlay.playing:hover{background:rgba(20,8,14,.25)}
 .rv-overlay.playing:hover .rv-play-btn{opacity:1}
 .rv-play-btn{width:60px;height:60px;border-radius:50%;background:rgba(201,125,138,.9);display:flex;align-items:center;justify-content:center;transition:transform .3s,opacity .3s;padding-left:4px}
+@media(max-width:768px){
+  .rv-overlay{display:none}
+  .rv-video{pointer-events:auto}
+  .rv-video-mobile{display:block!important}
+}
 .review-video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
 .review-body{padding:28px 26px 30px}
 .review-text{font-size:.92rem;line-height:1.8;color:#5a4a4e;font-style:italic;margin-bottom:22px}
@@ -720,6 +725,15 @@ function toggleVideo(id, overlay) {
 }
 
 // iOS: unlock all review videos on first touch so sound works on any tap later
+// On mobile: show native controls for guaranteed sound on iOS
+if (window.innerWidth <= 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+  document.querySelectorAll('.rv-video').forEach(function(v) {
+    v.setAttribute('controls', '');
+    v.removeAttribute('preload');
+    v.setAttribute('preload', 'none');
+  });
+}
+
 document.addEventListener('touchstart', function unlockAll() {
   document.querySelectorAll('.rv-video').forEach(function(v) {
     v.muted = true;
