@@ -339,7 +339,7 @@ footer{background:#2d1f23;color:rgba(255,255,255,.7);padding:70px 0 36px}
 
         <div class="review-card">
           <div class="review-video-wrap">
-            <video class="rv-video" preload="auto" controls>
+            <video class="rv-video" preload="auto" controls playsinline webkit-playsinline x5-playsinline>
               <source src="images/reviews/review1.MP4" type="video/mp4">
             </video>
             <div class="rv-overlay">
@@ -354,7 +354,7 @@ footer{background:#2d1f23;color:rgba(255,255,255,.7);padding:70px 0 36px}
 
         <div class="review-card">
           <div class="review-video-wrap">
-            <video class="rv-video" preload="auto" controls>
+            <video class="rv-video" preload="auto" controls playsinline webkit-playsinline x5-playsinline>
               <source src="images/reviews/review2.mp4" type="video/mp4">
             </video>
             <div class="rv-overlay">
@@ -369,7 +369,7 @@ footer{background:#2d1f23;color:rgba(255,255,255,.7);padding:70px 0 36px}
 
         <div class="review-card">
           <div class="review-video-wrap">
-            <video class="rv-video" preload="auto" controls>
+            <video class="rv-video" preload="auto" controls playsinline webkit-playsinline x5-playsinline>
               <source src="images/reviews/review3.mp4" type="video/mp4">
             </video>
             <div class="rv-overlay">
@@ -384,7 +384,7 @@ footer{background:#2d1f23;color:rgba(255,255,255,.7);padding:70px 0 36px}
 
         <div class="review-card">
           <div class="review-video-wrap">
-            <video class="rv-video" preload="auto" controls>
+            <video class="rv-video" preload="auto" controls playsinline webkit-playsinline x5-playsinline>
               <source src="images/reviews/review4.mp4" type="video/mp4">
             </video>
             <div class="rv-overlay">
@@ -399,7 +399,7 @@ footer{background:#2d1f23;color:rgba(255,255,255,.7);padding:70px 0 36px}
 
         <div class="review-card">
           <div class="review-video-wrap">
-            <video class="rv-video" preload="auto" controls>
+            <video class="rv-video" preload="auto" controls playsinline webkit-playsinline x5-playsinline>
               <source src="images/reviews/review5.mp4" type="video/mp4">
             </video>
             <div class="rv-overlay">
@@ -727,8 +727,19 @@ function toggleVideo(id, overlay) {
   v.onended = function(){ overlay.classList.remove('playing'); };
 }
 
-// iOS: unlock all review videos on first touch so sound works on any tap later
-// iOS sound fix: when user taps ANY play button, silently activate all other videos first
+// iOS sound fix: request fullscreen on play to guarantee sound
+var isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+document.querySelectorAll('.rv-video').forEach(function(video) {
+  video.addEventListener('play', function() {
+    if (isIOS) {
+      if (video.webkitEnterFullscreen) {
+        video.webkitEnterFullscreen();
+      }
+    }
+  });
+});
+
 var allVideosUnlocked = false;
 
 function unlockAllVideos(callback) {
