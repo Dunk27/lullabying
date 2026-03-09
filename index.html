@@ -172,7 +172,7 @@ footer{background:#2d1f23;color:rgba(255,255,255,.7);padding:70px 0 36px}
 <!-- HERO -->
 <section class="hero">
   <div class="hero-iframe-wrap">
-    <video autoplay muted loop playsinline style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);min-width:100%;min-height:100%;width:auto;height:auto;object-fit:cover;border:0;">
+    <video autoplay muted loop playsinline style="position:absolute;top:50%;left:50%;transform:translate3d(-50%,-50%,0);min-width:100%;min-height:100%;width:auto;height:auto;object-fit:cover;border:0;-webkit-transform:translate3d(-50%,-50%,0);will-change:transform;">
       <source src="images/hero-bg.mp4" type="video/mp4">
     </video>
   </div>
@@ -425,11 +425,11 @@ footer{background:#2d1f23;color:rgba(255,255,255,.7);padding:70px 0 36px}
 </section>
 
 <style>
-.reviews-carousel{position:relative;overflow:hidden}
-.reviews-track{display:flex;gap:28px;transition:transform .6s cubic-bezier(.16,1,.3,1);will-change:transform}
+.reviews-carousel{position:relative;overflow:hidden;-webkit-transform:translateZ(0);transform:translateZ(0)}
+.reviews-track{display:flex;gap:28px;transition:transform .6s cubic-bezier(.16,1,.3,1);will-change:transform;-webkit-transform:translateZ(0)}
 .review-card{min-width:280px;max-width:280px;background:#fff;border-radius:28px;overflow:hidden;box-shadow:0 4px 28px rgba(201,125,138,.1);flex-shrink:0}
 .review-video-wrap{width:100%;aspect-ratio:9/16;background:#2a1820;position:relative;overflow:hidden;cursor:pointer}
-.rv-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.rv-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;-webkit-transform:translateZ(0);transform:translateZ(0)}
 .rv-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(20,8,14,.35);transition:background .3s}
 .rv-overlay.playing{background:transparent}
 .rv-overlay.playing .rv-play-btn{opacity:0}
@@ -519,20 +519,14 @@ footer{background:#2d1f23;color:rgba(255,255,255,.7);padding:70px 0 36px}
     document.querySelectorAll('.rv-video').forEach(function(v){ v.pause(); });
     document.querySelectorAll('.rv-overlay').forEach(function(o){ o.classList.remove('playing'); });
     update();
-    // on mobile auto-play the visible card after swipe
+    // on mobile pause all on swipe - user must tap to play with sound
     if(window.innerWidth <= 600) {
       setTimeout(function(){
         var card = cards[cur];
         if(!card) return;
-        var video = card.querySelector('.rv-video');
         var overlay = card.querySelector('.rv-overlay');
-        if(video && overlay) {
-          video.play().then(function(){
-            overlay.classList.add('playing');
-          }).catch(function(){});
-          video.onended = function(){ overlay.classList.remove('playing'); };
-        }
-      }, 400);
+        if(overlay) overlay.classList.remove('playing');
+      }, 100);
     }
   };
 
