@@ -195,9 +195,12 @@ footer{background:#2d1f23;color:rgba(255,255,255,.7);padding:70px 0 36px}
     <div class="about-grid">
       <div class="about-img-wrap reveal">
         <div class="about-img-blob">
-          <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;">
+          <video id="aboutVideo" playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;">
             <source src="images/sutvideo.mp4" type="video/mp4">
           </video>
+          <div class="vid-overlay" onclick="toggleVideo('aboutVideo', this)">
+            <div class="vid-play-btn"><svg width="22" height="26" viewBox="0 0 22 26" fill="white"><path d="M0 0l22 13L0 26V0z"/></svg></div>
+          </div>
         </div>
         <div class="about-dots">
           <div class="dot dot-sm"></div>
@@ -274,9 +277,12 @@ footer{background:#2d1f23;color:rgba(255,255,255,.7);padding:70px 0 36px}
       </div>
       <div class="pains-img-wrap reveal">
         <div class="pains-img-blob">
-          <video autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;">
+          <video id="painsVideo" playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;">
             <source src="images/komu.mp4" type="video/mp4">
           </video>
+          <div class="vid-overlay" onclick="toggleVideo('painsVideo', this)">
+            <div class="vid-play-btn"><svg width="22" height="26" viewBox="0 0 22 26" fill="white"><path d="M0 0l22 13L0 26V0z"/></svg></div>
+          </div>
         </div>
         <div class="pains-side-dots">
           <div class="dot dot-lg"></div>
@@ -330,9 +336,12 @@ footer{background:#2d1f23;color:rgba(255,255,255,.7);padding:70px 0 36px}
 
         <div class="review-card">
           <div class="review-video-wrap">
-            <video preload="none" controls poster="">
+            <video class="rv-video" preload="metadata" playsinline>
               <source src="images/reviews/review1.MP4" type="video/mp4">
             </video>
+            <div class="rv-overlay">
+              <div class="rv-play-btn"><svg width="20" height="24" viewBox="0 0 20 24" fill="white"><path d="M0 0l20 12L0 24V0z"/></svg></div>
+            </div>
           </div>
           <div class="review-body">
             <p class="review-text">«После первого сеанса я почувствовала, как что-то внутри наконец-то отпустило. Было ощущение, что меня держат на руках — безопасно и тепло.»</p>
@@ -342,9 +351,12 @@ footer{background:#2d1f23;color:rgba(255,255,255,.7);padding:70px 0 36px}
 
         <div class="review-card">
           <div class="review-video-wrap">
-            <video preload="none" controls poster="">
+            <video class="rv-video" preload="metadata" playsinline>
               <source src="images/reviews/review2.mp4" type="video/mp4">
             </video>
+            <div class="rv-overlay">
+              <div class="rv-play-btn"><svg width="20" height="24" viewBox="0 0 20 24" fill="white"><path d="M0 0l20 12L0 24V0z"/></svg></div>
+            </div>
           </div>
           <div class="review-body">
             <p class="review-text">«Я не верила, что взрослый человек может так глубоко расслабиться. Три сессии — и хроническая тревога стала фоновой, а не всепоглощающей.»</p>
@@ -354,9 +366,12 @@ footer{background:#2d1f23;color:rgba(255,255,255,.7);padding:70px 0 36px}
 
         <div class="review-card">
           <div class="review-video-wrap">
-            <video preload="none" controls poster="">
+            <video class="rv-video" preload="metadata" playsinline>
               <source src="images/reviews/review3.mp4" type="video/mp4">
             </video>
+            <div class="rv-overlay">
+              <div class="rv-play-btn"><svg width="20" height="24" viewBox="0 0 20 24" fill="white"><path d="M0 0l20 12L0 24V0z"/></svg></div>
+            </div>
           </div>
           <div class="review-body">
             <p class="review-text">«Елена создаёт пространство абсолютного принятия. После добаюкивания я впервые почувствовала, что имею право просто быть — без доказательств и заслуг.»</p>
@@ -366,9 +381,12 @@ footer{background:#2d1f23;color:rgba(255,255,255,.7);padding:70px 0 36px}
 
         <div class="review-card">
           <div class="review-video-wrap">
-            <video preload="none" controls poster="">
+            <video class="rv-video" preload="metadata" playsinline>
               <source src="images/reviews/review4.mp4" type="video/mp4">
             </video>
+            <div class="rv-overlay">
+              <div class="rv-play-btn"><svg width="20" height="24" viewBox="0 0 20 24" fill="white"><path d="M0 0l20 12L0 24V0z"/></svg></div>
+            </div>
           </div>
           <div class="review-body">
             <p class="review-text">«Я скептически относилась к телесным практикам. Но уже на второй сессии расплакалась — и это были слёзы облегчения. Что-то глубокое встало на место.»</p>
@@ -378,9 +396,12 @@ footer{background:#2d1f23;color:rgba(255,255,255,.7);padding:70px 0 36px}
 
         <div class="review-card">
           <div class="review-video-wrap">
-            <video preload="none" controls poster="">
+            <video class="rv-video" preload="metadata" playsinline>
               <source src="images/reviews/review5.mp4" type="video/mp4">
             </video>
+            <div class="rv-overlay">
+              <div class="rv-play-btn"><svg width="20" height="24" viewBox="0 0 20 24" fill="white"><path d="M0 0l20 12L0 24V0z"/></svg></div>
+            </div>
           </div>
           <div class="review-body">
             <p class="review-text">«Это был опыт, которого мне не хватало всю жизнь. Я наконец почувствовала себя в безопасности — внутри самой себя.»</p>
@@ -407,8 +428,16 @@ footer{background:#2d1f23;color:rgba(255,255,255,.7);padding:70px 0 36px}
 .reviews-carousel{position:relative}
 .reviews-track{display:flex;gap:28px;transition:transform .6s cubic-bezier(.16,1,.3,1)}
 .review-card{min-width:calc(33.333% - 19px);background:#fff;border-radius:28px;overflow:hidden;box-shadow:0 4px 28px rgba(201,125,138,.1);flex-shrink:0}
-.review-video-wrap{width:100%;aspect-ratio:16/9;background:#2a1820;position:relative;overflow:hidden}
-.review-video-wrap video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.review-video-wrap{width:100%;aspect-ratio:16/9;background:#2a1820;position:relative;overflow:hidden;cursor:pointer}
+.rv-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.rv-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(20,8,14,.35);transition:background .3s}
+.rv-overlay.playing{background:transparent}
+.rv-overlay.playing .rv-play-btn{opacity:0}
+.rv-overlay:hover{background:rgba(20,8,14,.45)}
+.rv-overlay:hover .rv-play-btn{transform:scale(1.1)}
+.rv-overlay.playing:hover{background:rgba(20,8,14,.25)}
+.rv-overlay.playing:hover .rv-play-btn{opacity:1}
+.rv-play-btn{width:60px;height:60px;border-radius:50%;background:rgba(201,125,138,.9);display:flex;align-items:center;justify-content:center;transition:transform .3s,opacity .3s;padding-left:4px}
 .review-video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
 .review-body{padding:28px 26px 30px}
 .review-text{font-size:.92rem;line-height:1.8;color:#5a4a4e;font-style:italic;margin-bottom:22px}
@@ -628,6 +657,52 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   }
   requestAnimationFrame(draw);
 })();
+</script>
+<style>
+.vid-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(20,8,14,.3);transition:background .3s;cursor:pointer;z-index:5}
+.vid-overlay.playing{background:transparent}
+.vid-overlay.playing .vid-play-btn{opacity:0}
+.vid-overlay:hover .vid-play-btn{transform:scale(1.1)}
+.vid-overlay.playing:hover{background:rgba(20,8,14,.2)}
+.vid-overlay.playing:hover .vid-play-btn{opacity:1}
+.vid-play-btn{width:64px;height:64px;border-radius:50%;background:rgba(201,125,138,.9);display:flex;align-items:center;justify-content:center;transition:transform .3s,opacity .3s;padding-left:5px}
+</style>
+
+<script>
+function toggleVideo(id, overlay) {
+  var v = document.getElementById(id);
+  if (v.paused) {
+    v.play();
+    overlay.classList.add('playing');
+  } else {
+    v.pause();
+    overlay.classList.remove('playing');
+  }
+  v.onended = function(){ overlay.classList.remove('playing'); };
+}
+
+document.querySelectorAll('.review-video-wrap').forEach(function(wrap) {
+  var video = wrap.querySelector('.rv-video');
+  var overlay = wrap.querySelector('.rv-overlay');
+  if (!video || !overlay) return;
+  overlay.addEventListener('click', function() {
+    if (video.paused) {
+      // pause all other review videos
+      document.querySelectorAll('.rv-video').forEach(function(v) {
+        if (v !== video) { v.pause(); }
+      });
+      document.querySelectorAll('.rv-overlay').forEach(function(o) {
+        if (o !== overlay) { o.classList.remove('playing'); }
+      });
+      video.play();
+      overlay.classList.add('playing');
+    } else {
+      video.pause();
+      overlay.classList.remove('playing');
+    }
+    video.onended = function(){ overlay.classList.remove('playing'); };
+  });
+});
 </script>
 </body>
 </html>
